@@ -14,7 +14,8 @@ function About() {
     {
       icon: Users,
       title: "Mentor & Community Leader",
-      description: "Facilitated meetups across Africa for Andela / Google Africa",
+      description:
+        "Facilitated meetups across Africa for Andela / Google Africa",
     },
     {
       icon: Globe,
@@ -89,12 +90,11 @@ function About() {
                 Transforming Ideas Into Digital Reality
               </h3>
               <p className='text-lg mb-6 leading-relaxed'>
-                I&apos;m Matthew Chukwu, known as{" "}
-                <span className='text-primary font-semibold'>CodeMat</span>, a Full Stack Developer and Mobile Web Specialist
-                with over 13 years of experience crafting exceptional digital
-                experiences. My passion lies in transforming visionary business
-                ideas into powerful, scalable web applications that drive
-                measurable results.
+                A Full Stack Developer and Mobile Web Specialist with over 13
+                years of experience crafting exceptional digital experiences. My
+                passion lies in transforming visionary business ideas into
+                powerful, scalable web applications that drive measurable
+                results.
               </p>
               <p className='text-lg mb-6 leading-relaxed'>
                 As a{" "}
@@ -163,11 +163,11 @@ function About() {
             </p>
             <p className='text-lg leading-relaxed'>
               As a dedicated mentor and community leader, I&apos;ve facilitated
-              numerous meetups across Africa sponsored by Google Africa through the
-              Andela Learning Community, ALC, program. This experience has taught me
-              the importance of knowledge sharing and building the next
-              generation of developers, while also keeping me at the forefront
-              of emerging technologies and best practices.
+              numerous meetups across Africa sponsored by Google Africa through
+              the Andela Learning Community, ALC, program. This experience has
+              taught me the importance of knowledge sharing and building the
+              next generation of developers, while also keeping me at the
+              forefront of emerging technologies and best practices.
             </p>
             <p className='text-lg leading-relaxed'>
               <span className='text-primary font-semibold'>
@@ -175,8 +175,12 @@ function About() {
               </span>{" "}
               Let&apos;s collaborate to create something extraordinary that will
               set your business apart in the digital landscape. Contact me at{" "}
-              <a href='mailto:ask@soft-lutions.com.ng' className='text-blue-600'>ask@soft-lutions.com.ng</a> to
-              start your journey toward digital excellence.
+              <a
+                href='mailto:ask@soft-lutions.com.ng'
+                className='text-blue-600'>
+                ask@soft-lutions.com.ng
+              </a>{" "}
+              to start your journey toward digital excellence.
             </p>
           </div>
         </motion.div>
