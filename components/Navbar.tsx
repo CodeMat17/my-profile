@@ -21,6 +21,7 @@ function Navbar() {
   }, []);
 
   const navItems = [
+    { href: "/", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
     { href: "#portfolio", label: "Portfolio" },
@@ -74,11 +75,12 @@ function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-
+          
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}>
+             
                 <Link href='#contact'>
                   <Button
                     variant='default'
@@ -87,7 +89,6 @@ function Navbar() {
                   </Button>
                 </Link>
               </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -183,6 +184,9 @@ function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.4 }}
                 className='pt-4 border-t border-border/30'>
+                <p className='text-sm text-muted-foreground text-center mb-3'>
+                  Ready to start your project?
+                </p>
                 <Link href='#contact' onClick={toggleMenu}>
                   <Button
                     variant='default'
@@ -192,21 +196,7 @@ function Navbar() {
                 </Link>
               </motion.div>
 
-              {/* Contact Info */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className='pt-4 border-t border-border/30'>
-                <div className='text-center space-y-2'>
-                  <p className='text-sm text-muted-foreground'>
-                    Ready to start your project?
-                  </p>
-                  <p className='text-primary font-medium'>
-                    ask@soft-lutions.com.ng
-                  </p>
-                </div>
-              </motion.div>
+          
             </div>
           </motion.div>
         )}

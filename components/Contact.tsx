@@ -172,9 +172,7 @@ function Contact() {
               )}
             </Button>
           </form>
-          <p className='text-center mt-4'>
-            Or email directly at ask@soft-lutions.com.ng
-          </p>
+        
         </div>
       </div>
     </section>
