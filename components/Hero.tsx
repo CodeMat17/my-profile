@@ -29,7 +29,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6'>
+              className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-3'>
               <Sparkles className='w-4 h-4 text-primary' />
               <span className='text-sm font-medium'>
                 Available to create Projects
@@ -41,7 +41,7 @@ function Hero() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className='text-3xl md:text-4xl font-bold mb-2'>
+              className='text-3xl md:text-4xl font-bold mb-1'>
               <span className='bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent'>
                 I&apos;m Matthew - &ldquo;CodeMat&rdquo;
               </span>
@@ -54,7 +54,7 @@ function Hero() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className='text-xl md:text-2xl font-semibold mb-6 text-primary'>
+              className='text-xl md:text-2xl font-semibold mb-3 text-primary'>
               A Full Stack Developer
             </motion.h2>
 
@@ -63,7 +63,7 @@ function Hero() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className='text-4xl md:text-5xl font-bold mb-6'>
+              className='text-4xl md:text-5xl font-bold mb-3'>
               <span className='bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent'>
                 Dedicated To Crafting Digital Excellence
               </span>
@@ -146,7 +146,7 @@ function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className='flex-1 flex justify-center lg:justify-end order-1 lg:order-2'>
+            className='flex-1 flex justify-center lg:justify-end order-1 lg:order-2 lg:-mt-24 lg:pr-8'>
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
