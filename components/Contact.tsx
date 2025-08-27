@@ -25,7 +25,6 @@ function Contact() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const validateForm = (): boolean => {
     if (!formData.name.trim()) {
@@ -82,7 +81,6 @@ function Contact() {
         description: "Message sent successfully to CodeMat",
       });
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setIsSuccessModalOpen(true);
     } catch (error) {
       console.error("Submission Error:", error);
       toast.error(

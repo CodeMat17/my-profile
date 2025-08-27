@@ -24,10 +24,10 @@ export async function POST(request: Request) {
     );
 
     const { error } = await resend.emails.send({
-      from: "Nwanyị bụ ịfe <email@nwanyi-bu-ife.com.ng>",
+      from: "Portfolio Contact <ask@soft-lutions.com.ng>",
       to: [to],
-      replyTo: email, // Changed from reply_to to replyTo
-      subject: `[Festival Contact] ${subject}`,
+      replyTo: email,
+      subject: `[Portfolio Contact] ${subject}`,
       react: ContactFormEmail({ name, email, subject, message }),
     });
 
