@@ -146,7 +146,7 @@ function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className='flex-1 flex justify-center lg:justify-end order-1 lg:order-2 lg:-mt-24 lg:pr-8'>
+            className='flex-1 flex justify-center lg:justify-end order-1 lg:order-2 lg:-mt-40 lg:pr-8'>
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
