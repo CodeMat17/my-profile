@@ -1,0 +1,16 @@
+# robots.txt for Matthew Chukwu's Portfolio
+# https://www.matthewchukwu.com.ng
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Disallow crawling of any private or admin areas (if any exist in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://www.matthewchukwu.com.ng/sitemap.xml
+
+# Crawl-delay (optional - helps prevent overwhelming the server)
+Crawl-delay: 1
