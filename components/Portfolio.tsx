@@ -13,21 +13,23 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
+import { div } from "framer-motion/client";
 
 const projects = [
   {
     title: "Heritage Cooperative App",
     description:
       "A comprehensive fintech platform for a cooperative society featuring member management, savings tracking, investment portfolios, loan applications, and financial reporting. Built with modern technologies for secure and scalable financial operations.",
-    image: "/project1.jpg",
+    image: "/heritage.webp",
     tech: ["React", "Next.js", "Convex", "Clerk", "Squadco", "Tailwind"],
-    link: "https://heritage-cooperative.com.ng",
+    // link: "https://heritage-cooperative.com.ng",
+    link: "",
   },
   {
     title: "Threescore Exquisite Collections",
     description:
       "A comprehensive travel and hospitality platform for exceptional travel services across Kenya, East Africa, and beyond. Features safari planning, city escapes, group retreats, and romantic getaways with personalized booking experiences.",
-    image: "/project2.jpg",
+    image: "/threescore.webp",
     tech: ["React", "Next.js", "Convex", "Clerk", "Squadco", "Tailwind"],
     link: "https://threescoretours.com",
   },
@@ -35,7 +37,7 @@ const projects = [
     title: "Postgraduate School Portal",
     description:
       "A comprehensive university portal for postgraduate programs, featuring program management, student applications, course registration, and academic administration for the Postgraduate School.",
-    image: "/project2.jpg",
+    image: "/pg.webp",
     tech: ["React", "Next.js", "Convex", "Clerk", "Tailwind"],
     link: "https://pg.gouni.edu.ng",
   },
@@ -52,21 +54,23 @@ function Portfolio() {
           className='text-3xl md:text-4xl font-bold text-center mb-12'>
           Portfolio
         </motion.h2>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}>
-              <Card className='overflow-hidden h-full'>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={400}
-                  height={300}
-                  className='w-full h-48 object-cover'
-                />
+              <Card className='overflow-hidden w-full h-full pt-0'>
+                <div className='relative w-full aspect-video'>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className='object-cove object-center'
+                  />
+                </div>
+
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
@@ -81,14 +85,21 @@ function Portfolio() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild>
-                    <Link href={project.link}>View Project</Link>
-                  </Button>
+                  {!project.link ? (
+                    <Button>Under Reconstruction</Button>
+                  ) : (
+                    <Button asChild>
+                      <Link href={project.link} target='_blank'>
+                        View Project
+                      </Link>
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             </motion.div>
           ))}
         </div>
+      
       </div>
     </section>
   );
