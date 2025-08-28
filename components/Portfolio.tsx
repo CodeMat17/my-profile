@@ -52,7 +52,7 @@ function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className='text-3xl md:text-4xl font-bold text-center mb-12'>
-          Portfolio
+          Portfolio <br /> <span className="font-normal text-lg text-muted-foreground">Selected projects</span>
         </motion.h2>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
           {projects.map((project, index) => (
