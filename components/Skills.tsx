@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Cloud, Code, Database, Shield, Smartphone } from "lucide-react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 function Skills() {
   const skillCategories = [
@@ -136,8 +138,6 @@ function Skills() {
           ))}
         </motion.div>
 
-    
-
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -153,12 +153,17 @@ function Skills() {
               that will transform your business and delight your users.
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <button className='bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300'>
-                Start Your Project
-              </button>
-              <button className='border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300'>
-                View Portfolio
-              </button>
+             
+              <Button
+                asChild
+                size='lg'
+                className='rounded-full py-6 bg-gradient-to-r from-sky-300 to-blue-600 text-white hover:shadow-lg transition-all duration-300'>
+                <Link href='#contact'>Start Your Project</Link>
+              </Button>
+             
+              <Button asChild size='lg' variant='outline' className="rounded-full py-6">
+                <Link href='#portfolio'>View Portfolio</Link>
+              </Button>
             </div>
           </div>
         </motion.div>

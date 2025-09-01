@@ -133,7 +133,7 @@ function Hero() {
               <p className='text-sm text-muted-foreground mb-3'>
                 Trusted by innovative companies worldwide
               </p>
-              <div className='flex items-center justify-center gap-6 text-xs text-muted-foreground'>
+              <div className='flex items-center justify-center lg:justify-start gap-6 text-xs text-muted-foreground'>
                 <span>✓ 100% Client Satisfaction</span>
                 <span>✓ 99.9% Uptime Guarantee</span>
                 <span>✓ 24/7 Support</span>
