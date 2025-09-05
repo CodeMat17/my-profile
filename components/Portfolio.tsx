@@ -16,6 +16,15 @@ import { Badge } from "./ui/badge";
 
 const projects = [
   {
+    title: "Cinema Hub",
+    description:
+      "CinemaHub is a full-featured movie discovery app that allows users to search & discover real-time movie search with intelligent filtering, Filter movies by genre with beautiful UI components with a comprehensive movie information with cast, crew, production details and trailer  ",
+    image: "/tmdb1.webp",
+    tech: ["React", "Next.js", "typescript", "Tailwind", "TMDB API"],
+    // link: "https://heritage-cooperative.com.ng",
+    link: "https://cinemahub-demo.vercel.app",
+  },
+  {
     title: "Heritage Cooperative App",
     description:
       "A comprehensive fintech platform for a cooperative society featuring member management, savings tracking, investment portfolios, loan applications, and financial reporting. Built with modern technologies for secure and scalable financial operations.",
