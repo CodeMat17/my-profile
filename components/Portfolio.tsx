@@ -54,7 +54,7 @@ const projects = [
 function Portfolio() {
   return (
     <section id='portfolio' className='py-20 bg-muted/50'>
-      <div className='container mx-auto px-4'>
+      <div className='max-w-7xl mx-auto px-4'>
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ function Portfolio() {
             Selected projects
           </span>
         </motion.h2>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -89,7 +89,7 @@ function Portfolio() {
                 <CardContent>
                   <div className='flex flex-wrap gap-2'>
                     {project.tech.map((tech) => (
-                      <Badge key={tech} variant='secondary'>
+                      <Badge key={tech} variant='secondary' className="text-xs">
                         {tech}
                       </Badge>
                     ))}
@@ -97,9 +97,9 @@ function Portfolio() {
                 </CardContent>
                 <CardFooter>
                   {!project.link ? (
-                    <Button>Under Reconstruction</Button>
+                    <Button size='sm'>Under Reconstruction</Button>
                   ) : (
-                    <Button asChild>
+                    <Button size='sm' asChild>
                       <Link href={project.link} target='_blank'>
                         View Project
                       </Link>
