@@ -27,10 +27,11 @@ export const metadata: Metadata = {
   keywords:
     "web developer, full stack developer, mobile web specialist, hire developer, Next.js expert, React developer, Nigeria developer, freelance developer, software engineer, web app development",
   openGraph: {
-    title: "CodeMat - Award-Winning Full Stack Developer",
+    title:
+      "CodeMat - Full Stack Developer, transforming ideas into exceptional digital experiences.",
     description:
       "Hire Matthew Chukwu for innovative, tailor-made web solutions that drive results.",
-    url: "https://www.codemat.dev",
+    url: "https://www.matthewchukwu.com",
     siteName: "CodeMat Portfolio",
     images: [
       {
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   },
   robots: "index, follow",
   alternates: {
-    canonical: "https://www.matthewchukwu.com.ng",
+    canonical: "https://www.matthewchukwu.com",
   },
 };
 
