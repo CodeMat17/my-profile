@@ -176,9 +176,9 @@ function About() {
               Let&apos;s collaborate to create something extraordinary that will
               set your business apart in the digital landscape. Contact me at{" "}
               <a
-                href='mailto:ask@soft-lutions.com.ng'
+                href='mailto:email@matthewchukwu.com'
                 className='text-blue-600'>
-                ask@soft-lutions.com.ng
+                email@matthewchukwu.com
               </a>{" "}
               to start your journey toward digital excellence.
             </p>
