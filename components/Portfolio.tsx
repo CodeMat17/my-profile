@@ -16,6 +16,14 @@ import { Badge } from "./ui/badge";
 
 const projects = [
   {
+    title: "StaffSync",
+    description:
+      "StaffSync is a comprehensive HR management system, designed for modern organizations. It's not just another HR tool - it's a complete digital transformation solution that handles: Staff Management, Leave Management, Analytics & Reporting, Mobile-First Design and more.",
+    image: "/staff_sync.webp",
+    tech: ["React", "Next.js", "typescript", "Tailwind", "Shadcn"],
+    link: "https://staff-sync-demo.vercel.app/",
+  },
+  {
     title: "Cinema Hub",
     description:
       "CinemaHub is a full-featured movie discovery app that allows users to search & discover real-time movie search with intelligent filtering, Filter movies by genre with beautiful UI components with a comprehensive movie information with cast, crew, production details and trailer  ",
@@ -24,6 +32,7 @@ const projects = [
     // link: "https://heritage-cooperative.com.ng",
     link: "https://cinemahub-demo.vercel.app",
   },
+
   {
     title: "Heritage Cooperative App",
     description:
