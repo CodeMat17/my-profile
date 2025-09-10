@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,12 +76,11 @@ function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-          
+
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}>
-             
                 <Link href='#contact'>
                   <Button
                     variant='default'
@@ -93,13 +93,16 @@ function Navbar() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}>
-                <ModeToggle />
+                {/* <ModeToggle /> */}
+                 <AnimatedThemeToggler />
               </motion.div>
+             
             </div>
 
             {/* Mobile Menu Button */}
             <div className='md:hidden flex items-center space-x-2'>
-              <ModeToggle />
+              {/* <ModeToggle /> */}
+              <AnimatedThemeToggler />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -195,8 +198,6 @@ function Navbar() {
                   </Button>
                 </Link>
               </motion.div>
-
-          
             </div>
           </motion.div>
         )}
