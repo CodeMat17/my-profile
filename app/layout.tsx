@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CodeMat - Matthew Chukwu | Full Stack Developer",
   description:
-    "Matthew Chukwu (CodeMat) - Expert Full Stack Developer with 13+ years experience. Specializing in Next.js, React, and modern web technologies. Transforming ideas into exceptional digital experiences.",
+    "Full Stack Developer with 13+ years experience. Transforming ideas into exceptional digital experiences.",
   keywords:
     "hire Next.js developer in Nigeria, PWA developer for fintech, fintech, web developer, full stack developer, mobile web specialist, hire developer, Next.js expert, React developer, Nigeria developer, freelance developer, software engineer, web app development",
   openGraph: {
