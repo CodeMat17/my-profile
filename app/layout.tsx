@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Matthew Chukwu (CodeMat) - Transforming ideas into exceptional digital experiences. Over 13 years of expertise in full-stack web development, creating sleek, intuitive solutions with Next.js, React, and cutting-edge technologies. Passionate mentor and strategic leader.",
   keywords:
-    "web developer, full stack developer, mobile web specialist, hire developer, Next.js expert, React developer, Nigeria developer, freelance developer, software engineer, web app development",
+    "hire Next.js developer in Nigeria, PWA developer for fintech, fintech, web developer, full stack developer, mobile web specialist, hire developer, Next.js expert, React developer, Nigeria developer, freelance developer, software engineer, web app development",
   openGraph: {
     title:
       "CodeMat - Full Stack Developer, transforming ideas into exceptional digital experiences.",
