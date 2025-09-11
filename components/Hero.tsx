@@ -37,17 +37,16 @@ function Hero() {
             </motion.div>
 
             {/* Name */}
-            <motion.h1
+            <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className='text-3xl md:text-4xl font-bold mb-1'>
-              <span className='bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent'>
-                I&apos;m Matthew - &ldquo;CodeMat&rdquo;
-              </span>
-
-             
-            </motion.h1>
+              className='text-3xl md:text-4xl font-bold mb-1 flex flex-col items-center justify-center xl:justify-start sm:flex-row sm:gap-2'>
+              <h1 className='bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent'>
+                I&apos;m Matthew{" "}
+              </h1>{" "}
+              <p className="hidden sm:flex">-</p> <h1>&ldquo;CodeMat&rdquo;</h1>
+            </motion.div>
 
             {/* Tagline */}
             <motion.h2
@@ -160,7 +159,7 @@ function Hero() {
                 alt='Matthew Chukwu (CodeMat) - Award-Winning Full Stack Developer'
                 width={400}
                 height={400}
-                className='relative rounded-full shadow-2xl border-4 border-primary object-cover w-80 h-80 md:w-96 md:h-96'
+                className='relative rounded-full shadow-2xl border-4 border-primary object-cover w-80 h-80'
               />
 
               {/* Floating Tech Badges */}

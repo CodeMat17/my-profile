@@ -1,5 +1,3 @@
-
-
 function Footer() {
   return (
     <footer className='py-4 bg-background border-t'>

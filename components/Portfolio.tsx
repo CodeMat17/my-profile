@@ -98,7 +98,7 @@ function Portfolio() {
                 <CardContent>
                   <div className='flex flex-wrap gap-2'>
                     {project.tech.map((tech) => (
-                      <Badge key={tech} variant='secondary' className="text-xs">
+                      <Badge key={tech} variant='secondary' className='text-xs'>
                         {tech}
                       </Badge>
                     ))}

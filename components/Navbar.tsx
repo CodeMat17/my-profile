@@ -1,6 +1,5 @@
 "use client";
 
-import ModeToggle from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -55,6 +54,13 @@ function Navbar() {
 
             {/* Desktop Navigation */}
             <div className='hidden md:flex items-center space-x-1'>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }} className="mr-4 flex items-center justify-center">
+                {/* <ModeToggle /> */}
+                <AnimatedThemeToggler />
+              </motion.div>
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href}
@@ -89,14 +95,6 @@ function Navbar() {
                   </Button>
                 </Link>
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}>
-                {/* <ModeToggle /> */}
-                 <AnimatedThemeToggler />
-              </motion.div>
-             
             </div>
 
             {/* Mobile Menu Button */}

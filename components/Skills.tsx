@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Cloud, Code, Database, Shield, Smartphone } from "lucide-react";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 function Skills() {
   const skillCategories = [
@@ -69,7 +69,6 @@ function Skills() {
       color: "from-teal-500 to-blue-500",
     },
   ];
-
 
   return (
     <section id='skills' className='py-20'>
@@ -153,15 +152,18 @@ function Skills() {
               that will transform your business and delight your users.
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-             
               <Button
                 asChild
                 size='lg'
                 className='rounded-full py-6 bg-gradient-to-r from-sky-300 to-blue-600 text-white hover:shadow-lg transition-all duration-300'>
                 <Link href='#contact'>Start Your Project</Link>
               </Button>
-             
-              <Button asChild size='lg' variant='outline' className="rounded-full py-6">
+
+              <Button
+                asChild
+                size='lg'
+                variant='outline'
+                className='rounded-full py-6'>
                 <Link href='#portfolio'>View Portfolio</Link>
               </Button>
             </div>
