@@ -63,7 +63,7 @@ const projects = [
 function Portfolio() {
   return (
     <section id='portfolio' className='py-20 bg-muted/50'>
-      <div className='max-w-7xl mx-auto px-4'>
+      <div className='max-w-6xl mx-auto px-4'>
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

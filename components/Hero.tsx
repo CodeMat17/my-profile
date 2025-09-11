@@ -8,7 +8,7 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <section className='min-h-screen flex items-center justify-center relative overflow-hidden py-8'>
+    <section className='min-h-screen flex items-center justify-center relative overflow-hidden py-8 max-w-7xl mx-auto'>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
