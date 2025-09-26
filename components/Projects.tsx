@@ -60,18 +60,18 @@ const projects = [
   },
 ];
 
-function Portfolio() {
+function Projects() {
   return (
-    <section id='portfolio' className='py-20 bg-muted/50'>
+    <section id='projects' className='py-20 bg-muted/50'>
       <div className='max-w-6xl mx-auto px-4'>
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className='text-3xl md:text-4xl font-bold text-center mb-12'>
-          Portfolio <br />{" "}
+          Projects <br />{" "}
           <span className='font-normal text-lg text-muted-foreground'>
-            Selected projects
+            (Selected)
           </span>
         </motion.h2>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6'>
@@ -124,4 +124,4 @@ function Portfolio() {
   );
 }
 
-export default Portfolio;
+export default Projects;

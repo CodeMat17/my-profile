@@ -110,7 +110,7 @@ function Hero() {
                 asChild
                 className='group bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg hover:shadow-xl transition-all duration-300'>
                 <Link href='#portfolio' className='flex items-center gap-2'>
-                  View Award-Winning Work
+                  View Projects
                   <ArrowRight className='w-4 h-4 group-hover:translate-x-1 transition-transform' />
                 </Link>
               </Button>
@@ -130,13 +130,9 @@ function Hero() {
               transition={{ duration: 0.8, delay: 1.4 }}
               className='mt-8 pt-6 border-t border-border/50'>
               <p className='text-sm text-muted-foreground mb-3'>
-                Trusted by innovative companies worldwide
+                Trusted by innovative companies and clients.
               </p>
-              <div className='flex items-center justify-center lg:justify-start gap-6 text-xs text-muted-foreground'>
-                <span>✓ 100% Client Satisfaction</span>
-                <span>✓ 99.9% Uptime Guarantee</span>
-                <span>✓ 24/7 Support</span>
-              </div>
+             
             </motion.div>
           </motion.div>
 
