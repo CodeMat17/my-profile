@@ -1,58 +1,71 @@
 // app/layout.tsx
-import AnalyticsWrapper from "@/components/AnalyticsWrapper"; // New import
+import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 import { Toaster } from "@/components/ui/sonner";
-
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "CodeMat - Matthew Chukwu | Full Stack Developer",
+  title: "Matthew Chukwu (CodeMat) | #1 Full Stack Developer in Abuja, Nigeria",
   description:
-    "Full Stack Developer with 13+ years experience. Transforming ideas into exceptional digital experiences.",
+    "Hire Matthew Chukwu — the top Full Stack & AI Developer in Abuja, Nigeria. 13+ years building world-class web apps with Next.js, React, TypeScript & AI. Serving clients globally. Get your project built right.",
   keywords:
-    "hire Next.js developer in Nigeria, PWA developer for fintech, fintech, web developer, full stack developer, mobile web specialist, hire developer, Next.js expert, React developer, Nigeria developer, freelance developer, software engineer, web app development",
+    "developer in Abuja Nigeria, web developer Abuja, full stack developer Nigeria, hire developer Abuja, software engineer Abuja Nigeria, Next.js developer Nigeria, React developer Abuja, AI developer Nigeria, best developer Abuja, CodeMat, Matthew Chukwu, fintech developer Nigeria, mobile web developer, PWA developer Nigeria, TypeScript developer Abuja, freelance developer Abuja Nigeria, hire software engineer Nigeria, top developer Nigeria, web app development Abuja",
+  authors: [{ name: "Matthew Chukwu", url: "https://www.matthewchukwu.com" }],
+  creator: "Matthew Chukwu (CodeMat)",
+  publisher: "CodeMat",
+  metadataBase: new URL("https://www.matthewchukwu.com"),
   openGraph: {
-    title:
-      "CodeMat - Full Stack Developer, transforming ideas into exceptional digital experiences.",
+    title: "Matthew Chukwu (CodeMat) | #1 Full Stack & AI Developer in Abuja, Nigeria",
     description:
-      "Hire Matthew Chukwu for innovative, tailor-made web solutions that drive results.",
+      "13+ years of excellence. Next.js, React, TypeScript & AI. Based in Abuja, Nigeria — serving clients worldwide. Hire the developer companies trust.",
     url: "https://www.matthewchukwu.com",
-    siteName: "CodeMat Portfolio",
+    siteName: "CodeMat — Matthew Chukwu Portfolio",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
+        alt: "Matthew Chukwu - Full Stack Developer Abuja Nigeria",
       },
     ],
-    locale: "en_US",
+    locale: "en_NG",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CodeMat - Matthew Chukwu",
+    title: "CodeMat | #1 Developer in Abuja, Nigeria",
     description:
-      "Expert Full Stack Developer ready to build your next project.",
-    images: ["/twitter-image.jpg"],
+      "Hire Nigeria's top Full Stack & AI Developer. Next.js · React · TypeScript · AI. 13+ years · 50+ projects · Based in Abuja.",
+    images: ["/og-image.png"],
   },
-  robots: "index, follow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: "https://www.matthewchukwu.com",
   },
+  verification: {
+    google: "google-site-verification-token",
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -61,19 +74,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en-NG' suppressHydrationWarning>
+      <head>
+        <meta name='geo.region' content='NG-FC' />
+        <meta name='geo.placename' content='Abuja, Nigeria' />
+        <meta name='geo.position' content='9.0579;7.4951' />
+        <meta name='ICBM' content='9.0579, 7.4951' />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`${nunito.variable} font-[family-name:var(--font-nunito)] antialiased`}>
         <ThemeProvider
           attribute='class'
-          defaultTheme='system'
+          defaultTheme='dark'
           enableSystem
           disableTransitionOnChange>
           <Navbar />
           {children}
           <Footer />
           <Toaster />
-          <AnalyticsWrapper /> {/* Use the client-side wrapper */}
+          <AnalyticsWrapper />
         </ThemeProvider>
       </body>
     </html>

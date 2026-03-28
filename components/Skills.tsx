@@ -1,170 +1,159 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cloud, Code, Database, Shield, Smartphone } from "lucide-react";
+import { Bot, Cloud, Code, Database, Shield, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-function Skills() {
-  const skillCategories = [
-    {
-      icon: Code,
-      title: "Frontend Development",
-      description: "Modern, responsive, and performant user interfaces",
-      skills: [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Framer Motion",
-        "Progressive Web Apps",
-      ],
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Database,
-      title: "Backend & Database",
-      description: "Scalable server-side solutions and data management",
-      skills: [
-        "Node.js",
-        "Convex",
-        "Supabase",
-        "PostgreSQL",
-        "MongoDB",
-        "GraphQL",
-        "REST APIs",
-      ],
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud & DevOps",
-      description: "Deployment automation and cloud infrastructure",
-      skills: ["AWS", "Vercel", "Serverless", "Microservices"],
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Development",
-      description: "Cross-platform mobile solutions",
-      skills: [
-        "PWA",
-        "Mobile Optimization",
-        "App Store Deployment",
-        "Push Notifications",
-      ],
-      color: "from-orange-500 to-red-500",
-    },
-    {
-      icon: Shield,
-      title: "Security & Performance",
-      description: "Enterprise-grade security and optimization",
-      skills: [
-        "Authentication",
-        "Authorization",
-        "SSL/TLS",
-        "Performance Optimization",
-        "Security Audits",
-      ],
-      color: "from-teal-500 to-blue-500",
-    },
-  ];
+const skillCategories = [
+  {
+    icon: Code,
+    title: "Frontend Development",
+    description: "Modern, responsive, performant UI that users love",
+    skills: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Progressive Web Apps", "Shadcn/UI"],
+    color: "from-blue-500 to-cyan-500",
+    glow: "group-hover:shadow-blue-500/20",
+  },
+  {
+    icon: Database,
+    title: "Backend & Database",
+    description: "Scalable, secure server-side solutions",
+    skills: ["Node.js", "Convex", "Supabase", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"],
+    color: "from-green-500 to-emerald-500",
+    glow: "group-hover:shadow-green-500/20",
+  },
+  {
+    icon: Bot,
+    title: "AI Integration",
+    description: "Intelligent features powered by cutting-edge AI",
+    skills: ["Claude API (Anthropic)", "OpenAI / GPT-4", "Vercel AI SDK", "AI Chatbots", "LLM Integration", "Smart Automation", "Prompt Engineering"],
+    color: "from-purple-500 to-pink-500",
+    glow: "group-hover:shadow-purple-500/20",
+    featured: true,
+  },
+  {
+    icon: Cloud,
+    title: "Cloud & DevOps",
+    description: "Reliable deployment and cloud infrastructure",
+    skills: ["AWS", "Vercel", "Serverless Architecture", "Microservices", "CI/CD Pipelines"],
+    color: "from-orange-500 to-red-500",
+    glow: "group-hover:shadow-orange-500/20",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile Web",
+    description: "App-quality experiences on any device",
+    skills: ["PWA Development", "Mobile Optimization", "App Store Deployment", "Push Notifications", "Offline Support"],
+    color: "from-teal-500 to-blue-500",
+    glow: "group-hover:shadow-teal-500/20",
+  },
+  {
+    icon: Shield,
+    title: "Security & Performance",
+    description: "Enterprise-grade security and blazing speed",
+    skills: ["Authentication & Auth", "SSL/TLS", "Performance Audits", "Lighthouse 95+", "Security Best Practices"],
+    color: "from-amber-500 to-yellow-500",
+    glow: "group-hover:shadow-amber-500/20",
+  },
+];
 
+function Skills() {
   return (
-    <section id='skills' className='py-20 max-w-6xl mx-auto'>
-      <div className='container mx-auto px-4'>
+    <section id='skills' className='py-24 relative overflow-hidden'>
+      <div className='absolute inset-0 bg-grid opacity-20' />
+
+      <div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6'>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className='text-center mb-16'>
-          <h2 className='text-4xl md:text-5xl font-bold mb-6'>
-            <span className='bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent'>
-              Technical
+          <span className='inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 mb-4'>
+            Skills & Expertise
+          </span>
+          <h2 className='text-4xl md:text-5xl font-black mb-5'>
+            <span className='bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent'>
+              Modern Stack.
             </span>
             <br />
-            <span className='bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent'>
-              Excellence
+            <span className='bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent'>
+              AI-Powered Results.
             </span>
           </h2>
-          <p className='text-xl text-muted-foreground max-w-3xl mx-auto'>
-            Mastery of cutting-edge technologies and proven methodologies to
-            deliver exceptional digital solutions.
+          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
+            Mastery of the technologies that matter — including the AI tools reshaping what&apos;s possible in 2025.
           </p>
         </motion.div>
 
         {/* Skills Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12'>
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               className='group relative'>
-              {/* Glow Effect */}
-              <div
-                className={`absolute -inset-1 bg-gradient-to-r ${category.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300`}
-              />
+              {/* Glow */}
+              <div className={`absolute -inset-px bg-gradient-to-br ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm`} />
 
-              <div className='relative bg-background/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl'>
-                <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${category.color} mb-6`}>
-                  <category.icon className='w-8 h-8 text-white' />
+              <div className={`relative h-full rounded-2xl p-6 border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group-hover:shadow-2xl ${category.glow} ${category.featured ? "ring-1 ring-purple-500/30" : ""}`}>
+                {category.featured && (
+                  <div className='absolute -top-3 left-6'>
+                    <span className='px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'>
+                      ✦ AI-Powered
+                    </span>
+                  </div>
+                )}
+
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <category.icon className='w-6 h-6 text-white' />
                 </div>
 
-                <h3 className='text-xl font-bold mb-3'>{category.title}</h3>
-                <p className='text-muted-foreground mb-6'>
-                  {category.description}
-                </p>
+                <h3 className='text-lg font-bold mb-1'>{category.title}</h3>
+                <p className='text-sm text-muted-foreground mb-5 leading-relaxed'>{category.description}</p>
 
-                <div className='space-y-2'>
+                <div className='flex flex-wrap gap-2'>
                   {category.skills.map((skill) => (
-                    <div key={skill} className='flex items-center gap-2'>
-                      <div
-                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}
-                      />
-                      <span className='text-sm font-medium'>{skill}</span>
-                    </div>
+                    <span
+                      key={skill}
+                      className='px-2.5 py-1 rounded-lg text-xs font-medium bg-muted/50 border border-border/50 hover:border-primary/40 hover:bg-primary/5 transition-colors duration-200'>
+                      {skill}
+                    </span>
                   ))}
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Call to Action */}
+        {/* CTA Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className='text-center mt-16'>
-          <div className='bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-3xl p-8 border border-primary/20'>
-            <h3 className='text-2xl font-bold mb-4'>
-              Ready to Build Something Amazing?
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className='relative overflow-hidden rounded-3xl p-8 md:p-10 text-center border border-primary/20'>
+          <div className='absolute inset-0 bg-gradient-to-br from-primary/10 via-blue-500/5 to-purple-500/10' />
+          <div className='absolute inset-0 bg-grid opacity-30' />
+          <div className='relative z-10'>
+            <Bot className='w-10 h-10 text-primary mx-auto mb-4 opacity-80' />
+            <h3 className='text-2xl md:text-3xl font-black mb-3'>
+              The Difference? I Use AI to Build Faster.
             </h3>
             <p className='text-muted-foreground mb-6 max-w-2xl mx-auto'>
-              Let&apos;s leverage this expertise to create a digital solution
-              that will transform your business and delight your users.
+              While others are catching up, I&apos;m already shipping AI-powered features —
+              giving your business a head start that compounds over time.
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <Button
-                asChild
-                size='lg'
-                className='rounded-full py-6 bg-gradient-to-r from-sky-300 to-blue-600 text-white hover:shadow-lg transition-all duration-300'>
-                <Link href='#contact'>Start Your Project</Link>
+              <Button asChild size='lg' className='rounded-full bg-gradient-to-r from-primary to-blue-500 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300'>
+                <Link href='#contact'>Start Your AI-Powered Project</Link>
               </Button>
-
-              <Button
-                asChild
-                size='lg'
-                variant='outline'
-                className='rounded-full py-6'>
-                <Link href='#portfolio'>View Portfolio</Link>
+              <Button asChild size='lg' variant='outline' className='rounded-full'>
+                <Link href='#projects'>See What I&apos;ve Built</Link>
               </Button>
             </div>
           </div>

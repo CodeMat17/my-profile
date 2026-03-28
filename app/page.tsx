@@ -6,20 +6,20 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import StructuredData from "@/components/StructuredData";
-import PagePattern from "@/components/PagePattern";
+import FloatingCTA from "@/components/FloatingCTA";
 
 export default function Home() {
   return (
-    <main className='min-h-screen '>
-      <PagePattern />
+    <main className='min-h-screen'>
       <Hero />
       <About />
       <Skills />
       <Projects />
       <Services />
-      <Testimonials />     
+      <Testimonials />
       <Contact />
       <StructuredData />
+      <FloatingCTA />
     </main>
   );
 }
