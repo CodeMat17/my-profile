@@ -118,9 +118,9 @@ function Footer() {
           <p>© {new Date().getFullYear()} Matthew Chukwu (CodeMat). All rights reserved.</p>
           <p>
             Built with{" "}
-            <span className='text-primary font-medium'>Next.js 15</span>
-            {" & "}
-            <span className='text-purple-500 font-medium'>AI</span>
+            <span className='text-primary font-medium'>Next.js 16</span>
+        
+           
             {" · "}
             <span className='text-green-500'>Abuja, Nigeria 🇳🇬</span>
           </p>
