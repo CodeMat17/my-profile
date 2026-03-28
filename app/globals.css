@@ -252,7 +252,26 @@
   margin-right: 6px;
 }
 
-::view-transition-old(root), ::view-transition-new(root) {
+::view-transition-old(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+/* Smooth color transitions on all elements when theme changes */
+*, *::before, *::after {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Disable transitions on elements that should snap (images, SVGs, transforms) */
+img, video, svg, canvas,
+[class*="animate-"], [class*="motion"] {
+  transition: none !important;
 }
