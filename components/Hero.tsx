@@ -258,7 +258,7 @@ function Hero() {
                 }}
                 className='absolute -top-2 -left-4 px-3 py-1.5 rounded-xl bg-background/90 dark:bg-card/90 backdrop-blur-sm border border-border shadow-lg text-xs font-semibold flex items-center gap-1.5'>
                 <span className='w-2 h-2 rounded-full bg-blue-500' />
-                Next.js 15
+                Next.js
               </motion.div>
 
               {/* Floating badge: AI */}
