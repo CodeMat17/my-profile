@@ -1,17 +1,22 @@
 // app/layout.tsx
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
-import { Toaster } from "@/components/ui/sonner";
+import RevealObserver from "@/components/RevealObserver";
+import LazyToaster from "@/components/LazyToaster";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -20,15 +25,15 @@ export const metadata: Metadata = {
     "Hire Matthew Chukwu — a top Full Stack & AI Developer in Abuja, Nigeria. 13+ years building world-class web apps with Next.js, React, TypeScript & AI. Serving clients globally. Get your project built right.",
   keywords:
     "developer in Abuja Nigeria, web developer Abuja, full stack developer Nigeria, hire developer Abuja, software engineer Abuja Nigeria, Next.js developer Nigeria, React developer Abuja, AI developer Nigeria, best developer Abuja, CodeMat, Matthew Chukwu, fintech developer Nigeria, mobile web developer, PWA developer Nigeria, TypeScript developer Abuja, freelance developer Abuja Nigeria, hire software engineer Nigeria, top developer Nigeria, web app development Abuja",
-  authors: [{ name: "Matthew Chukwu", url: "https://www.matthewchukwu.com" }],
+  authors: [{ name: "Matthew Chukwu", url: "https://matthewchukwu.dev" }],
   creator: "Matthew Chukwu (CodeMat)",
   publisher: "CodeMat",
-  metadataBase: new URL("https://www.matthewchukwu.com"),
+  metadataBase: new URL("https://matthewchukwu.dev"),
   openGraph: {
     title: "Matthew Chukwu (CodeMat) | Full Stack & AI Developer, Nigeria",
     description:
       "13+ years of excellence. Next.js, React, TypeScript & AI. Based in Abuja, Nigeria — serving clients worldwide. Hire the developer companies trust.",
-    url: "https://www.matthewchukwu.com",
+    url: "https://matthewchukwu.dev",
     siteName: "CodeMat — Matthew Chukwu Portfolio",
     images: [
       {
@@ -60,7 +65,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.matthewchukwu.com",
+    canonical: "https://matthewchukwu.dev",
   },
   verification: {
     google: "google-site-verification-token",
@@ -76,23 +81,26 @@ export default function RootLayout({
   return (
     <html lang='en-NG' suppressHydrationWarning>
       <head>
+        {/* Lets CSS hide scroll-reveal content only when JS is available to reveal it */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <meta name='geo.region' content='NG-FC' />
         <meta name='geo.placename' content='Abuja, Nigeria' />
         <meta name='geo.position' content='9.0579;7.4951' />
         <meta name='ICBM' content='9.0579, 7.4951' />
       </head>
       <body
-        className={`${nunito.variable} font-[family-name:var(--font-nunito)] antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
-          enableSystem
->
+          enableSystem>
           <Navbar />
           {children}
           <Footer />
-          <Toaster />
-          <AnalyticsWrapper />
+          <LazyToaster />
+          <RevealObserver />
+          {/* The insights script only exists on Vercel deployments; elsewhere it 404s */}
+          {process.env.VERCEL && <AnalyticsWrapper />}
         </ThemeProvider>
       </body>
     </html>

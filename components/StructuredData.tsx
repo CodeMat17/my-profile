@@ -1,6 +1,5 @@
-"use client";
-
-import Script from "next/script";
+// Escape "<" so the JSON can never close the script tag early.
+const toJsonLd = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
 
 function StructuredData() {
   const person = {
@@ -9,9 +8,9 @@ function StructuredData() {
     name: "Matthew Chukwu",
     alternateName: "CodeMat",
     jobTitle: "Full Stack Developer & AI Integration Expert",
-    email: "email@matthewchukwu.com",
-    url: "https://www.matthewchukwu.com",
-    image: "https://www.matthewchukwu.com/dev.webp",
+    email: "hello@matthewchukwu.dev",
+    url: "https://matthewchukwu.dev",
+    image: "https://matthewchukwu.dev/dev.webp",
     description:
       "Top Full Stack Developer and AI Integration Expert in Abuja, Nigeria. 13+ years of experience building world-class web applications with Next.js, React, TypeScript, and AI technologies.",
     address: {
@@ -48,7 +47,7 @@ function StructuredData() {
     worksFor: {
       "@type": "Organization",
       name: "CodeMat / Soft-lutions",
-      url: "https://www.matthewchukwu.com",
+      url: "https://matthewchukwu.dev",
     },
   };
 
@@ -58,8 +57,8 @@ function StructuredData() {
     name: "CodeMat — Full Stack Development Services",
     description:
       "Professional full stack web development, AI integration, and mobile web services based in Abuja, Nigeria.",
-    url: "https://www.matthewchukwu.com",
-    image: "https://www.matthewchukwu.com/dev.webp",
+    url: "https://matthewchukwu.dev",
+    image: "https://matthewchukwu.dev/dev.webp",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Abuja",
@@ -71,7 +70,7 @@ function StructuredData() {
       latitude: "9.0579",
       longitude: "7.4951",
     },
-    email: "email@matthewchukwu.com",
+    email: "hello@matthewchukwu.dev",
     priceRange: "$$",
     areaServed: "Worldwide",
     serviceType: [
@@ -93,15 +92,13 @@ function StructuredData() {
 
   return (
     <>
-      <Script
-        id='json-ld-person'
+      <script
         type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(person) }}
       />
-      <Script
-        id='json-ld-business'
+      <script
         type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(localBusiness) }}
       />
     </>
   );

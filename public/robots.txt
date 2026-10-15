@@ -1,6 +1,6 @@
 # robots.txt — Matthew Chukwu (CodeMat) Portfolio
 # Top Full Stack & AI Developer in Abuja, Nigeria
-# https://www.matthewchukwu.com
+# https://matthewchukwu.dev
 
 User-agent: *
 Allow: /
@@ -14,4 +14,4 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://www.matthewchukwu.com/sitemap.xml
+Sitemap: https://matthewchukwu.dev/sitemap.xml

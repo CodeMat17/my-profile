@@ -1,172 +1,125 @@
-"use client";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight, Check } from "lucide-react";
+import { Container, Reveal, SectionHeading } from "./Section";
 
-import { motion } from "framer-motion";
-import {
-  Bot,
-  BookOpen,
-  Cloud,
-  Code2,
-  LineChart,
-  Smartphone,
-  Zap,
-} from "lucide-react";
-import Link from "next/link";
-import { Button } from "./ui/button";
+const engagements = [
+  {
+    label: "For founders & businesses",
+    title: "Product build",
+    body: "From idea to launched product. I own architecture, design-to-code and delivery, then support you after go-live.",
+    points: [
+      "Discovery, scoping & technical plan",
+      "Full-stack web app or PWA",
+      "AI features where they add real value",
+      "Launch, monitoring & handover",
+    ],
+    cta: "Start a project",
+    featured: true,
+  },
+  {
+    label: "For engineering teams",
+    title: "Senior contractor",
+    body: "Embedded with your team for weeks or months — shipping features, reviewing code and raising standards.",
+    points: [
+      "Joins your rituals, tools & codebase",
+      "Feature delivery end-to-end",
+      "Code review & mentoring",
+      "Flexible part- or full-time",
+    ],
+    cta: "Discuss a contract",
+  },
+  {
+    label: "For leaders",
+    title: "Technical advisory",
+    body: "A senior second opinion on architecture, AI strategy, performance or a struggling project.",
+    points: [
+      "Architecture & stack reviews",
+      "AI integration roadmap",
+      "Performance & SEO audits",
+      "Project rescue",
+    ],
+    cta: "Book an advisory call",
+  },
+];
 
-const services = [
-  {
-    icon: Code2,
-    title: "Full Stack Web Development",
-    description:
-      "End-to-end web applications using Next.js 15, React 19, TypeScript, and modern cloud infrastructure. From idea to deployed product — built to scale.",
-    highlights: ["Next.js & React", "TypeScript", "API Development", "Database Design"],
-    color: "from-blue-500 to-cyan-500",
-    badge: "Most Popular",
-  },
-  {
-    icon: Bot,
-    title: "AI Integration & Features",
-    description:
-      "Transform your product with intelligent AI features — chatbots, content generation, smart recommendations, and automation — using Claude, GPT-4, and the Vercel AI SDK.",
-    highlights: ["Claude / GPT-4 Integration", "AI Chatbots", "Smart Automation", "Prompt Engineering"],
-    color: "from-purple-500 to-pink-500",
-    badge: "🔥 Hot",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Web & PWA",
-    description:
-      "App-quality mobile experiences on the web. Progressive Web Apps that install, work offline, and feel native — without the app store friction.",
-    highlights: ["PWA Development", "Offline Support", "Push Notifications", "App Store Deploy"],
-    color: "from-green-500 to-teal-500",
-    badge: null,
-  },
-  {
-    icon: Zap,
-    title: "Performance & SEO",
-    description:
-      "Lighthouse 95+ scores, lightning-fast load times, and technical SEO that gets you found first — in Abuja, Nigeria, and worldwide.",
-    highlights: ["Core Web Vitals", "Technical SEO", "Speed Optimization", "Structured Data"],
-    color: "from-amber-500 to-orange-500",
-    badge: null,
-  },
-  {
-    icon: LineChart,
-    title: "Technology Consulting",
-    description:
-      "Strategic tech guidance for businesses in Nigeria and beyond. I align your technology stack and digital roadmap with your business goals for maximum ROI.",
-    highlights: ["Tech Stack Selection", "Digital Strategy", "Cost Optimization", "Scalability Planning"],
-    color: "from-red-500 to-rose-500",
-    badge: null,
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & Real-time Apps",
-    description:
-      "Deploy on AWS or Vercel with bulletproof infrastructure. Build real-time collaborative platforms, dashboards, and live data applications.",
-    highlights: ["AWS & Vercel", "Real-time Databases", "Serverless", "Microservices"],
-    color: "from-sky-500 to-blue-500",
-    badge: null,
-  },
-  {
-    icon: BookOpen,
-    title: "Mentoring & Training",
-    description:
-      "Upskill your team or kickstart your dev career. I've trained developers across Africa through Google's ALC/Andela program and private workshops.",
-    highlights: ["1-on-1 Coaching", "Team Workshops", "Code Reviews", "Career Guidance"],
-    color: "from-indigo-500 to-violet-500",
-    badge: null,
-  },
+const process = [
+  { step: "Discover", body: "We align on goals, users, constraints and what success looks like." },
+  { step: "Plan", body: "A clear scope, architecture and milestones — no surprises later." },
+  { step: "Build", body: "Weekly demos on a live preview. You see progress, not status reports." },
+  { step: "Launch & grow", body: "Production release, monitoring, and iteration on real usage." },
 ];
 
 function Services() {
   return (
-    <section id='services' className='py-24 relative overflow-hidden'>
-      <div className='absolute inset-0 bg-grid opacity-20' />
+    <section id='services' className='relative border-y border-border bg-muted/40 py-24 sm:py-32 dark:bg-card/40'>
+      <Container>
+        <SectionHeading
+          index='03'
+          eyebrow='Ways to work together'
+          title={
+            <>
+              Hire me for a product,{" "}
+              <span className='text-muted-foreground'>a team, or a decision.</span>
+            </>
+          }
+          description="I'm an independent engineer. Whether you need a complete product, an extra senior on your team, or expert advice, here's how we can work together."
+        />
 
-      <div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6'>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className='text-center mb-16'>
-          <span className='inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 mb-4'>
-            Services
-          </span>
-          <h2 className='text-4xl md:text-5xl font-black mb-5'>
-            <span className='bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent'>
-              What I Build
-            </span>
-            <br />
-            <span className='bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent'>
-              For You
-            </span>
-          </h2>
-          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-            Full-spectrum development services — from sleek frontends to AI-powered features —
-            tailored to your business and budget.
-          </p>
-        </motion.div>
-
-        {/* Services grid */}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12'>
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.07 }}
-              className='group relative'>
-              {/* Hover glow */}
-              <div className={`absolute -inset-px bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm`} />
-
-              <div className='relative h-full rounded-2xl p-6 border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300'>
-                {service.badge && (
-                  <div className='absolute -top-3 right-4'>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold text-white shadow-lg bg-gradient-to-r ${service.color}`}>
-                      {service.badge}
-                    </span>
-                  </div>
+        <div className='mt-16 grid gap-5 lg:grid-cols-3'>
+          {engagements.map((e, i) => (
+            <Reveal key={e.title} delay={0.06 * i} className='h-full'>
+              <div
+                className={cn(
+                  "relative flex h-full flex-col rounded-3xl border p-7 sm:p-8",
+                  e.featured
+                    ? "border-primary/40 bg-background shadow-2xl shadow-primary/10"
+                    : "border-border bg-background/60",
+                )}>
+                {e.featured && (
+                  <div className='absolute inset-x-8 -top-px h-px bg-gradient-to-r from-transparent via-primary to-transparent' />
                 )}
-
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className='w-6 h-6 text-white' />
-                </div>
-
-                <h3 className='text-lg font-bold mb-2'>{service.title}</h3>
-                <p className='text-sm text-muted-foreground leading-relaxed mb-4'>{service.description}</p>
-
-                <ul className='space-y-1.5'>
-                  {service.highlights.map((h) => (
-                    <li key={h} className='flex items-center gap-2 text-xs text-muted-foreground'>
-                      <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${service.color} flex-shrink-0`} />
-                      {h}
+                <p className='font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground'>{e.label}</p>
+                <h3 className='mt-4 text-2xl font-semibold tracking-tight'>{e.title}</h3>
+                <p className='mt-3 leading-relaxed text-muted-foreground'>{e.body}</p>
+                <ul className='mt-7 space-y-3 border-t border-border pt-7'>
+                  {e.points.map((p) => (
+                    <li key={p} className='flex gap-3 text-sm'>
+                      <Check className='mt-0.5 size-4 shrink-0 text-primary' />
+                      {p}
                     </li>
                   ))}
                 </ul>
+                <div className='mt-auto pt-8'>
+                  <a
+                    href='#contact'
+                    className={cn(
+                      "group inline-flex h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors",
+                      e.featured
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                        : "border border-foreground/15 hover:bg-foreground/5",
+                    )}>
+                    {e.cta}
+                    <ArrowUpRight className='size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                  </a>
+                </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className='text-center'>
-          <p className='text-muted-foreground mb-5 text-sm'>
-            Not sure what you need? Let&apos;s talk — I&apos;ll help you figure out the right solution.
-          </p>
-          <Button asChild size='lg' className='rounded-full bg-gradient-to-r from-primary to-blue-500 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300'>
-            <Link href='#contact'>Get a Free Consultation</Link>
-          </Button>
-        </motion.div>
-      </div>
+        <Reveal className='mt-24'>
+          <h3 className='font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground'>How a project runs</h3>
+          <ol className='mt-8 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4'>
+            {process.map((p, i) => (
+              <li key={p.step} className='bg-background p-7'>
+                <span className='font-mono text-sm text-primary'>{String(i + 1).padStart(2, "0")}</span>
+                <p className='mt-4 text-lg font-semibold tracking-tight'>{p.step}</p>
+                <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{p.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+      </Container>
     </section>
   );
 }

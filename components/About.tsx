@@ -1,217 +1,88 @@
-"use client";
+import { Container, Eyebrow, Reveal } from "./Section";
 
-import { motion } from "framer-motion";
-import { Award, Bot, Brain, CheckCircle, Globe, GraduationCap, MapPin, Users, Zap } from "lucide-react";
-
-const achievements = [
-  {
-    icon: Award,
-    title: "Certified MWS",
-    description: "Google-certified Mobile Web Specialist — mastery in PWAs",
-    color: "from-amber-500 to-orange-500",
-    bg: "bg-amber-500/10",
-    border: "border-amber-500/20",
-  },
-  {
-    icon: Users,
-    title: "Google/Andela Mentor",
-    description: "Facilitated dev meetups across Africa for Google Africa ALC",
-    color: "from-blue-500 to-cyan-500",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/20",
-  },
-  {
-    icon: Globe,
-    title: "13+ Years Experience",
-    description: "Full-stack excellence serving clients on 3 continents",
-    color: "from-green-500 to-emerald-500",
-    bg: "bg-green-500/10",
-    border: "border-green-500/20",
-  },
-  {
-    icon: Zap,
-    title: "50+ Projects Delivered",
-    description: "From startups to government institutions — all delivered",
-    color: "from-purple-500 to-pink-500",
-    bg: "bg-purple-500/10",
-    border: "border-purple-500/20",
-  },
+const credentials = [
+  { title: "Google-certified Mobile Web Specialist", detail: "Progressive Web Apps & mobile performance" },
+  { title: "Google Africa / Andela mentor", detail: "Led developer communities through the ALC programme" },
+  { title: "NIPSS — PSLC 20", detail: "Policy, Strategy & Leadership Course, National Institute" },
+  { title: "13+ years in production", detail: "Clients across Africa, Europe and North America" },
 ];
 
-const strengths = [
+const principles = [
   {
-    icon: Brain,
-    title: "AI-Powered Development",
-    description: "Integrating AI tools to build smarter products faster — giving clients a decisive competitive edge.",
+    title: "Own the outcome",
+    body: "I think in business results, not tickets. Every decision is weighed against what it does for your users and your roadmap.",
   },
   {
-    icon: GraduationCap,
-    title: "Strategic Leadership (NIPSS PSLC 20)",
-    description: "Completed the prestigious Policy, Strategy & Leadership Course at Nigeria's National Institute for Policy and Strategic Studies, class 20.",
+    title: "Ship, then sharpen",
+    body: "Small, frequent releases with real feedback beat big reveals. You see working software early and often.",
   },
   {
-    icon: CheckCircle,
-    title: "Performance & SEO Obsessed",
-    description: "Lighthouse 95+ scores, lightning-fast load times, and SEO best practices built in from day one.",
-  },
-  {
-    icon: MapPin,
-    title: "Based in Abuja, Nigeria",
-    description: "Africa-timezone availability, deep understanding of the Nigerian market, and global reach for international clients.",
+    title: "Built to be handed over",
+    body: "Typed, tested, documented code your team can extend with confidence — long after the engagement ends.",
   },
 ];
 
 function About() {
   return (
-    <section id='about' className='py-24 relative overflow-hidden'>
-      {/* Section background */}
-      <div className='absolute inset-0 bg-muted/30 dark:bg-muted/10' />
-      <div className='absolute inset-0 bg-grid opacity-30' />
-
-      <div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6'>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className='text-center mb-16'>
-          <span className='inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 mb-4'>
-            About Me
-          </span>
-          <h2 className='text-4xl md:text-5xl font-black mb-5'>
-            <span className='bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent'>
-              Why Top Companies
-            </span>
-            <br />
-            <span className='bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent'>
-              Choose CodeMat
-            </span>
-          </h2>
-          <p className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'>
-            A rare combination of deep technical mastery, strategic business thinking, and AI expertise —
-            built over 13 years of delivering excellence across Nigeria and beyond.
-          </p>
-        </motion.div>
-
-        {/* Achievement cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className='grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16'>
-          {achievements.map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`group p-6 rounded-2xl border ${item.border} ${item.bg} hover:scale-105 transition-all duration-300`}>
-              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} mb-4 shadow-lg`}>
-                <item.icon className='w-6 h-6 text-white' />
-              </div>
-              <h3 className='font-bold text-base mb-2'>{item.title}</h3>
-              <p className='text-sm text-muted-foreground leading-relaxed'>{item.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Main content */}
-        <div className='grid lg:grid-cols-2 gap-12 items-start'>
-          {/* Story */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}>
-            <h3 className='text-2xl font-bold mb-5 flex items-center gap-3'>
-              <span className='w-8 h-0.5 bg-primary' />
-              The CodeMat Story
-            </h3>
-            <div className='space-y-4 text-muted-foreground leading-relaxed'>
-              <p>
-                I&apos;m <strong className='text-foreground'>Matthew Chukwu</strong>, a Full Stack Developer
-                and Mobile Web Specialist based in <strong className='text-foreground'>Abuja, Nigeria</strong>.
-                For over 13 years, I&apos;ve been the developer that businesses call when they need
-                things done right — the first time.
-              </p>
-              <p>
-                I specialize in <strong className='text-foreground'>Next.js, React, TypeScript</strong>, and
-                modern cloud infrastructure, with a growing expertise in
-                <strong className='text-foreground'> AI integration</strong> to build products that are faster, smarter, and more impactful than
-                anything competitors can ship.
-              </p>
-              <p>
-                As a <strong className='text-foreground'>certified Mobile Web Specialist</strong>, I build
-                Progressive Web Apps that blur the line between web and native — delivering
-                app-store-quality experiences without the friction.
-              </p>
-              <p>
-                My work spans <strong className='text-foreground'>fintech, healthcare, education, hospitality,
-                and HR</strong> — serving government institutions, cooperatives, universities, and
-                startups across Nigeria and East Africa.
-              </p>
+    <section id='about' className='relative border-y border-border bg-muted/40 py-24 sm:py-32 dark:bg-card/40'>
+      <Container>
+        <div className='grid gap-14 lg:grid-cols-12 lg:gap-16'>
+          <div className='lg:col-span-5'>
+            <div className='lg:sticky lg:top-28'>
+              <Reveal>
+                <Eyebrow index='01'>About</Eyebrow>
+                <h2 className='mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl'>
+                  The engineer teams call when it has to be{" "}
+                  <span className='text-signature'>done right.</span>
+                </h2>
+              </Reveal>
             </div>
+          </div>
 
-            {/* AI highlight */}
-            <div className='mt-6 p-4 rounded-xl border border-purple-500/20 bg-purple-500/5 flex items-start gap-3'>
-              <Bot className='w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5' />
-              <div>
-                <p className='text-sm font-semibold text-foreground mb-1'>AI-First Development</p>
-                <p className='text-sm text-muted-foreground'>
-                  I actively integrate AI into every project — from AI-powered features to
-                  AI-accelerated development workflows. You get modern, smarter products delivered faster.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Strengths */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className='space-y-5'>
-            <h3 className='text-2xl font-bold mb-5 flex items-center gap-3'>
-              <span className='w-8 h-0.5 bg-primary' />
-              What Sets Me Apart
-            </h3>
-            {strengths.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className='flex items-start gap-4 p-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-300'>
-                <div className='w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0'>
-                  <item.icon className='w-5 h-5 text-primary' />
-                </div>
-                <div>
-                  <h4 className='font-semibold text-sm mb-1'>{item.title}</h4>
-                  <p className='text-sm text-muted-foreground leading-relaxed'>{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* CTA */}
-            <div className='mt-6 p-5 rounded-xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20 text-center'>
-              <p className='text-sm font-semibold text-foreground mb-1'>
-                Ready to build something extraordinary?
+          <div className='lg:col-span-7'>
+            <Reveal className='space-y-5 text-pretty text-lg leading-relaxed text-muted-foreground'>
+              <p>
+                I&apos;m <span className='text-foreground'>Matthew Chukwu</span> — a senior full-stack
+                engineer based in Abuja, Nigeria, working with clients worldwide. For more than
+                13 years I&apos;ve designed and shipped software for startups, universities,
+                cooperatives and government institutions.
               </p>
-              <p className='text-xs text-muted-foreground mb-3'>
-                Reach out at{" "}
-                <a href='mailto:email@matthewchukwu.com' className='text-primary hover:underline font-medium'>
-                  email@matthewchukwu.com
-                </a>
+              <p>
+                My core is <span className='text-foreground'>Next.js, React, TypeScript and Node</span>,
+                backed by modern data platforms and the cloud. Increasingly, I help teams put{" "}
+                <span className='text-foreground'>AI into production</span> — not as a demo, but as
+                features users rely on.
               </p>
+              <p>
+                As a freelancer, I work two ways: delivering complete products for clients, and
+                embedding with engineering teams as a senior contractor who raises the bar from week one.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.1} className='mt-12'>
+              <dl className='grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2'>
+                {credentials.map((c) => (
+                  <div key={c.title} className='bg-background p-6'>
+                    <dt className='font-medium'>{c.title}</dt>
+                    <dd className='mt-1.5 text-sm text-muted-foreground'>{c.detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+
+            <div className='mt-14 space-y-8'>
+              {principles.map((p, i) => (
+                <Reveal key={p.title} delay={0.05 * i}>
+                  <div className='grid gap-2 border-t border-border pt-8 sm:grid-cols-[10rem_1fr] sm:gap-8'>
+                    <h3 className='font-mono text-xs uppercase tracking-[0.2em] text-primary'>{p.title}</h3>
+                    <p className='leading-relaxed text-muted-foreground'>{p.body}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

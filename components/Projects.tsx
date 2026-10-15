@@ -1,207 +1,198 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { ArrowUpRight, Lock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Container, Reveal, SectionHeading } from "./Section";
 
 const projects = [
   {
-    title: "StaffSync HR Platform",
+    title: "StaffSync",
+    subtitle: "HR platform for modern organisations",
     description:
-      "Comprehensive HR management system for modern organizations — staff management, leave tracking, analytics, payroll, and mobile-first design. A complete digital transformation in one platform.",
+      "A complete HR operating system — staff records, leave workflows, payroll and analytics — designed mobile-first so managers can run their teams from anywhere.",
+    highlights: ["Leave & approval workflows", "Payroll & reporting", "Role-based dashboards"],
     image: "/staff_sync.webp",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind", "Shadcn/UI"],
+    domain: "staff-sync-demo.vercel.app",
+    tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
     link: "https://staff-sync-demo.vercel.app/",
     category: "Enterprise SaaS",
-    color: "from-blue-500/20 to-cyan-500/20",
   },
   {
-    title: "Heritage Cooperative App",
+    title: "Heritage Cooperative",
+    subtitle: "Fintech platform for a cooperative society",
     description:
-      "Fintech platform for a cooperative society — member management, savings, investment portfolios, loan applications, and financial reporting. Secure, real-time, and fully scalable.",
+      "Member management, savings, investment portfolios and loan applications in one secure, real-time platform — with integrated payments and audit-ready financial reporting.",
+    highlights: ["Real-time ledgers", "Loan origination", "Integrated payments"],
     image: "/heritage.webp",
-    tech: ["Next.js", "Convex", "Clerk", "Squadco", "Tailwind"],
+    domain: "private deployment",
+    tech: ["Next.js", "Convex", "Clerk", "Squadco"],
     link: "",
     category: "Fintech",
-    color: "from-green-500/20 to-emerald-500/20",
   },
   {
-    title: "Threescore Exquisite Collections",
+    title: "Threescore Tours",
+    subtitle: "Premium travel across Kenya & East Africa",
     description:
-      "Premium travel & hospitality platform for Kenya and East Africa — safari planning, city escapes, group retreats, and romantic getaways with personalized booking experiences.",
+      "A booking experience for safaris, city escapes, group retreats and getaways — personalised itineraries, enquiries and payments for an international audience.",
+    highlights: ["Custom itineraries", "Online booking", "SEO-led growth"],
     image: "/threescore.webp",
-    tech: ["Next.js", "Convex", "Clerk", "Squadco", "Tailwind"],
+    domain: "threescoretours.com",
+    tech: ["Next.js", "Convex", "Clerk", "Squadco"],
     link: "https://threescoretours.com",
     category: "Travel & Hospitality",
-    color: "from-amber-500/20 to-orange-500/20",
   },
   {
-    title: "Postgraduate School Portal",
+    title: "GOUNI Postgraduate Portal",
+    subtitle: "University admissions & academic administration",
     description:
-      "Full university portal for postgraduate programs — student applications, course registration, program management, and academic administration at scale.",
+      "The end-to-end portal for a university's postgraduate school — applications, course registration, programme management and administration at institutional scale.",
+    highlights: ["Online admissions", "Course registration", "Admin back-office"],
     image: "/pg.webp",
+    domain: "pg.gouni.edu.ng",
     tech: ["Next.js", "Convex", "Clerk", "Tailwind"],
     link: "https://pg.gouni.edu.ng",
     category: "Education",
-    color: "from-purple-500/20 to-pink-500/20",
   },
   {
     title: "Cinema Hub",
+    subtitle: "Movie discovery, fast",
     description:
-      "Full-featured movie discovery app — real-time search, intelligent filtering by genre, comprehensive movie details including cast, crew, production info, and trailers.",
+      "Real-time search, genre filtering and rich title pages with cast, crew and trailers — a showcase of performance-tuned data fetching and UI polish.",
+    highlights: ["Instant search", "Smart filtering", "Rich detail pages"],
     image: "/tmdb1.webp",
-    tech: ["Next.js", "React", "TypeScript", "TMDB API", "Tailwind"],
+    domain: "cinemahub-demo.vercel.app",
+    tech: ["Next.js", "TypeScript", "TMDB API"],
     link: "https://cinemahub-demo.vercel.app",
     category: "Entertainment",
-    color: "from-red-500/20 to-rose-500/20",
   },
 ];
 
-function Projects() {
+type Project = (typeof projects)[number];
+
+function BrowserFrame({ project }: { project: Project }) {
   return (
-    <section id='projects' className='py-24 relative overflow-hidden'>
-      <div className='absolute inset-0 bg-muted/30 dark:bg-muted/10' />
-      <div className='absolute inset-0 bg-grid opacity-20' />
-
-      <div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6'>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className='text-center mb-16'>
-          <span className='inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 mb-4'>
-            Portfolio
-          </span>
-          <h2 className='text-4xl md:text-5xl font-black mb-5'>
-            <span className='bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent'>
-              Projects That
-            </span>
-            <br />
-            <span className='bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent'>
-              Drive Real Results
-            </span>
-          </h2>
-          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-            From fintech to education, government portals to hospitality — each project built
-            to perform, scale, and impress.
-          </p>
-        </motion.div>
-
-        {/* Featured project - first item larger */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className='mb-6'>
-          <ProjectCard project={projects[0]} featured />
-        </motion.div>
-
-        {/* Grid: remaining projects */}
-        <div className='grid md:grid-cols-2 gap-6'>
-          {projects.slice(1).map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}>
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className='text-center mt-12'>
-          <p className='text-muted-foreground mb-4'>
-            These are just selected highlights — I&apos;ve delivered 50+ projects across industries.
-          </p>
-          <Button asChild size='lg' className='rounded-full bg-gradient-to-r from-primary to-blue-500 hover:shadow-lg transition-all duration-300'>
-            <Link href='#contact'>Discuss Your Project</Link>
-          </Button>
-        </motion.div>
+    <div className='overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/10 dark:shadow-black/40'>
+      <div className='flex items-center gap-1.5 border-b border-border px-4 py-3'>
+        <span className='size-2.5 rounded-full bg-foreground/15' />
+        <span className='size-2.5 rounded-full bg-foreground/15' />
+        <span className='size-2.5 rounded-full bg-foreground/15' />
+        <span className='mx-auto flex items-center gap-1.5 truncate rounded-md bg-muted px-3 py-1 font-mono text-[11px] text-muted-foreground'>
+          {!project.link && <Lock className='size-3' />}
+          {project.domain}
+        </span>
+        <span className='w-[42px]' />
       </div>
-    </section>
+      <div className='relative aspect-[1349/591] overflow-hidden'>
+        <Image
+          src={project.image}
+          alt={`${project.title} — ${project.subtitle}`}
+          fill
+          sizes='(min-width: 1024px) 640px, 100vw'
+          className='object-cover object-top transition-transform duration-[1.2s] ease-out group-hover:scale-[1.03]'
+        />
+      </div>
+    </div>
   );
 }
 
-function ProjectCard({
-  project,
-  featured = false,
-}: {
-  project: (typeof projects)[0];
-  featured?: boolean;
-}) {
+function CaseStudy({ project, index }: { project: Project; index: number }) {
+  const reversed = index % 2 === 1;
+
   return (
-    <div
-      className={`group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 hover:shadow-2xl ${
-        featured ? "md:flex" : "flex flex-col"
-      }`}>
-      {/* Color glow */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-      {/* Image */}
-      <div
-        className={`relative overflow-hidden flex-shrink-0 ${
-          featured ? "md:w-1/2 aspect-video md:aspect-auto" : "aspect-video w-full"
-        }`}>
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className='object-cover object-center group-hover:scale-105 transition-transform duration-700'
-        />
-        {/* Category badge on image */}
-        <div className='absolute top-3 left-3'>
-          <span className='px-2.5 py-1 rounded-full text-xs font-semibold bg-background/80 backdrop-blur-sm border border-border/50'>
-            {project.category}
-          </span>
+    <Reveal>
+      <article className='group grid items-center gap-8 lg:grid-cols-12 lg:gap-14'>
+        <div className={cn("lg:col-span-7", reversed && "lg:order-2")}>
+          {project.link ? (
+            <Link href={project.link} target='_blank' rel='noopener noreferrer' aria-label={`Visit ${project.title}`}>
+              <BrowserFrame project={project} />
+            </Link>
+          ) : (
+            <BrowserFrame project={project} />
+          )}
         </div>
-      </div>
 
-      {/* Content */}
-      <div className={`relative z-10 p-6 flex flex-col ${featured ? "md:flex-1 md:justify-center" : "flex-1"}`}>
-        <h3 className={`font-black mb-2 ${featured ? "text-2xl" : "text-xl"}`}>
-          {project.title}
-        </h3>
-        <p className='text-sm text-muted-foreground leading-relaxed mb-4 flex-1'>
-          {project.description}
-        </p>
-        <div className='flex flex-wrap gap-1.5 mb-5'>
-          {project.tech.map((tech) => (
-            <Badge key={tech} variant='secondary' className='text-xs rounded-full'>
-              {tech}
-            </Badge>
+        <div className={cn("lg:col-span-5", reversed && "lg:order-1")}>
+          <div className='flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground'>
+            <span className='text-primary'>{String(index + 1).padStart(2, "0")}</span>
+            <span className='h-px w-6 bg-border' />
+            {project.category}
+          </div>
+          <h3 className='mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl'>{project.title}</h3>
+          <p className='mt-1 text-lg text-muted-foreground'>{project.subtitle}</p>
+          <p className='mt-5 text-pretty leading-relaxed text-muted-foreground'>{project.description}</p>
+
+          <ul className='mt-6 grid gap-2 border-t border-border pt-6'>
+            {project.highlights.map((h) => (
+              <li key={h} className='flex items-center gap-3 text-sm'>
+                <span className='size-1.5 rounded-full bg-primary' />
+                {h}
+              </li>
+            ))}
+          </ul>
+
+          <div className='mt-6 flex flex-wrap gap-2'>
+            {project.tech.map((t) => (
+              <span key={t} className='rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground'>
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <div className='mt-8'>
+            {project.link ? (
+              <Link
+                href={project.link}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='group/link inline-flex items-center gap-2 text-sm font-medium'>
+                <span className='border-b border-foreground/30 pb-0.5 transition-colors group-hover/link:border-primary'>
+                  Visit live site
+                </span>
+                <ArrowUpRight className='size-4 text-primary transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5' />
+              </Link>
+            ) : (
+              <span className='inline-flex items-center gap-2 text-sm text-muted-foreground'>
+                <Lock className='size-3.5' />
+                Private client — under NDA
+              </span>
+            )}
+          </div>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+function Projects() {
+  return (
+    <section id='work' className='relative py-24 sm:py-32'>
+      <Container>
+        <div className='flex flex-col justify-between gap-8 lg:flex-row lg:items-end'>
+          <SectionHeading
+            index='01'
+            eyebrow='Selected work'
+            title={
+              <>
+                Products in production,
+                <br className='hidden sm:block' /> <span className='text-muted-foreground'>not just in pitch decks.</span>
+              </>
+            }
+          />
+          <Reveal className='max-w-sm text-muted-foreground lg:pb-2'>
+            A few highlights from 50+ shipped projects across fintech, education,
+            hospitality and the public sector.
+          </Reveal>
+        </div>
+
+        <div className='mt-16 space-y-24 sm:mt-20 sm:space-y-32'>
+          {projects.map((project, index) => (
+            <CaseStudy key={project.title} project={project} index={index} />
           ))}
         </div>
-        {project.link ? (
-          <Button
-            size='sm'
-            asChild
-            className='self-start rounded-full bg-gradient-to-r from-primary to-blue-500 hover:shadow-lg transition-all duration-300 group/btn'>
-            <Link href={project.link} target='_blank' className='flex items-center gap-2'>
-              View Live Project
-              <ArrowUpRight className='w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform' />
-            </Link>
-          </Button>
-        ) : (
-          <Button size='sm' variant='outline' className='self-start rounded-full opacity-60' disabled>
-            <Lock className='w-3.5 h-3.5 mr-1.5' />
-            Private / NDA
-          </Button>
-        )}
-      </div>
-    </div>
+      </Container>
+    </section>
   );
 }
 

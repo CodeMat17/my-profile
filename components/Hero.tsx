@@ -1,327 +1,158 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { ArrowRight, Award, Bot, MapPin, Sparkles, Zap } from "lucide-react";
+import { ArrowDown, ArrowUpRight, BadgeCheck, CalendarDays, Github, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import RotatingWord from "./RotatingWord";
 
-const roles = [
-  "Full Stack Developer",
-  "AI Integration Expert",
-  "Next.js Expert",
-  "Mobile Web Specialist",
+const socials = [
+  { href: "https://github.com/matthewchukwu", icon: Github, label: "GitHub" },
+  { href: "https://linkedin.com/in/matthewchukwu", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://twitter.com/codemat_dev", icon: Twitter, label: "Twitter/X" },
 ];
 
-function TypingText() {
-  const [index, setIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
+// Entrance animations are pure CSS so the hero paints before any JS hydrates.
+const delay = (seconds: number) => ({ "--delay": `${seconds}s` }) as React.CSSProperties;
 
-  useEffect(() => {
-    const current = roles[index];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!deleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 60);
-    } else if (!deleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2200);
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
-    } else if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % roles.length);
-    }
-    return () => clearTimeout(timeout);
-  }, [displayed, deleting, index]);
-
+function FloatingChip({
+  children,
+  className,
+  delay: d,
+  drift,
+}: {
+  children: React.ReactNode;
+  className: string;
+  delay: number;
+  drift: number;
+}) {
   return (
-    <span className='text-primary'>
-      {displayed}
-      <span className='animate-[blink_1s_ease-in-out_infinite] text-primary/80'>|</span>
-    </span>
+    <div className={`enter-up absolute ${className}`} style={delay(d)}>
+      <div
+        className='drift flex items-center gap-3 rounded-2xl border border-border bg-background/80 px-4 py-3 text-foreground shadow-2xl shadow-black/10 backdrop-blur-xl dark:border-white/10 dark:bg-black/45 dark:text-white dark:shadow-black/30'
+        style={{ "--drift": `${drift}px` } as React.CSSProperties}>
+        {children}
+      </div>
+    </div>
   );
 }
 
 function Hero() {
   return (
-    <section className='relative min-h-screen flex items-center justify-center overflow-hidden'>
-      {/* Animated background orbs */}
-      <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <motion.div
-          animate={{ x: [0, 80, 0], y: [0, -60, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className='absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl'
-        />
-        <motion.div
-          animate={{ x: [0, -60, 0], y: [0, 80, 0], scale: [1, 1.3, 1] }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5,
-          }}
-          className='absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl'
-        />
-        <motion.div
-          animate={{ x: [0, 40, 0], y: [0, 40, 0], scale: [1, 1.1, 1] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3,
-          }}
-          className='absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-purple-500/8 blur-3xl'
-        />
-        <div className='absolute inset-0 bg-grid opacity-40' />
+    <section
+      id='top'
+      className='relative isolate -mt-16 overflow-hidden lg:flex lg:h-svh lg:min-h-[680px] lg:items-center'>
+      {/* Backdrop: glow + grid. Top on mobile, right on desktop */}
+      <div
+        aria-hidden
+        className='hero-backdrop pointer-events-none absolute inset-x-0 top-0 -z-20 h-[40rem] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[66%]'>
+        <div className='hero-aurora absolute left-1/2 top-24 size-[24rem] -translate-x-1/2 rounded-full bg-primary/25 blur-[110px] lg:left-[38%] lg:top-[14%] lg:size-[34rem] lg:translate-x-0' />
+        <div className='absolute right-0 top-1/3 hidden size-[22rem] rounded-full bg-[var(--signature-2)] opacity-15 blur-[120px] lg:block' />
+        <div className='bg-grid-fine absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,#000_25%,transparent_75%)]' />
+        <div className='bg-noise absolute inset-0 opacity-[0.04] mix-blend-overlay' />
       </div>
 
-      <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
-        <div className='flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16'>
-          {/* LEFT: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className='flex-1 text-center lg:text-left order-2 lg:order-1 max-w-2xl'>
-            {/* Available badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className='inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-5 text-sm font-medium'
-              style={{
-                background: "oklch(0.7 0.25 145 / 0.1)",
-                borderColor: "oklch(0.7 0.25 145 / 0.3)",
-                color: "oklch(0.7 0.25 145)",
-              }}>
-              <span className='w-2 h-2 rounded-full bg-green-500 animate-pulse' />
-              Available for hire · Abuja, Nigeria 🇳🇬
-            </motion.div>
+      {/* Portrait layer: fades down on mobile, fades left on desktop */}
+      <div
+        aria-hidden
+        className='hero-photo enter-portrait pointer-events-none absolute inset-x-0 top-16 -z-10 mx-auto aspect-[1701/1625] w-full max-w-[34rem] lg:inset-x-auto lg:bottom-0 lg:right-0 lg:mx-0 lg:aspect-auto lg:w-[58%] lg:max-w-none'>
+        <Image
+          src='/hero-portrait.webp'
+          alt=''
+          fill
+          preload
+          fetchPriority='high'
+          sizes='(min-width: 1024px) 58vw, (min-width: 544px) 544px, 100vw'
+          className='object-contain object-top lg:object-bottom'
+        />
+      </div>
 
-            {/* Name */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}>
-              <p className='text-lg md:text-xl text-muted-foreground mb-1 font-medium'>
-                Hello, I&apos;m
-              </p>
-              <h1 className='text-5xl md:text-6xl lg:text-7xl font-black mb-2 leading-none'>
-                <span className='bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent'>
-                  Matthew
-                </span>
-              </h1>
-              <h1 className='text-5xl md:text-6xl lg:text-7xl font-black mb-4 leading-none'>
-                <span className='bg-gradient-to-r from-primary via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient'>
-                  &ldquo;CodeMat&rdquo;
-                </span>
-              </h1>
-            </motion.div>
+      {/* Desktop chips, aligned to the portrait layer */}
+      <div className='pointer-events-none absolute bottom-0 right-0 top-16 hidden w-[58%] lg:block'>
+        <FloatingChip className='left-[64%] top-[16%]' delay={1.1} drift={-8}>
+          <BadgeCheck className='size-5 text-primary' />
+          <span className='text-xs font-medium leading-tight'>
+            Google-certified
+            <br />
+            <span className='text-muted-foreground dark:text-white/60'>Mobile Web Specialist</span>
+          </span>
+        </FloatingChip>
+        <FloatingChip className='bottom-[24%] right-[5%]' delay={1.25} drift={8}>
+          <span className='text-2xl font-semibold tracking-tight'>13+</span>
+          <span className='font-mono text-[10px] uppercase leading-tight tracking-widest text-muted-foreground dark:text-white/60'>
+            Years in
+            <br />
+            production
+          </span>
+        </FloatingChip>
+      </div>
 
-            {/* Typing role */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className='text-2xl md:text-3xl font-bold mb-5 h-10'>
-              <TypingText />
-            </motion.div>
+      <div className='mx-auto w-full max-w-7xl px-4 pb-16 pt-[calc(4rem+min(100vw,34rem)*0.86)] sm:px-6 lg:px-8 lg:pb-0 lg:pt-16'>
+        <div className='text-center lg:max-w-[min(42rem,50%)] lg:text-left'>
+          <p
+            style={delay(0.1)}
+            className='enter-up font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground sm:text-[13px]'>
+            Matthew Chukwu <span className='text-primary'>/</span> CodeMat
+          </p>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className='text-base md:text-lg text-muted-foreground mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0'>
-              13+ years crafting world-class digital experiences. I build
-              scalable web applications, integrate cutting-edge AI, and
-              transform bold ideas into products that drive real results.
-            </motion.p>
+          <h1
+            style={delay(0.15)}
+            className='enter-up mt-4 text-balance text-[clamp(2.4rem,9vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.04em] lg:text-[min(5vw,8.4vh)]'>
+            <span className='sr-only'>Matthew Chukwu, </span>
+            Senior software engineer building products that <RotatingWord />
+          </h1>
 
-            {/* Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.85 }}
-              className='flex flex-wrap gap-3 mb-8 justify-center lg:justify-start'>
-              <div className='flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-semibold text-green-600 dark:text-green-400'>
-                <Award className='w-3.5 h-3.5' />
-                Certified MWS
-              </div>
-              <div className='flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600 dark:text-blue-400'>
-                <Zap className='w-3.5 h-3.5' />
-                50+ Projects Delivered
-              </div>
-              <div className='flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-semibold text-purple-600 dark:text-purple-400'>
-                <Bot className='w-3.5 h-3.5' />
-                AI-Powered Solutions
-              </div>
-              <div className='flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-600 dark:text-amber-400'>
-                <MapPin className='w-3.5 h-3.5' />
-                Abuja, Nigeria
-              </div>
-            </motion.div>
+          <p
+            style={delay(0.25)}
+            className='enter-up mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0'>
+            I partner with founders, agencies and engineering teams to design,
+            build and ship fast, reliable platforms — from fintech and
+            public-sector systems to AI-powered products. 13+ years of
+            production experience with Next.js, TypeScript and the modern cloud.
+          </p>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
-              <Button
-                size='lg'
-                asChild
-                className='group relative overflow-hidden bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 shadow-lg hover:shadow-primary/25 hover:shadow-2xl transition-all duration-300 text-base px-8'>
-                <Link href='#contact' className='flex items-center gap-2'>
-                  <Sparkles className='w-4 h-4' />
-                  Hire Me Now
-                  <ArrowRight className='w-4 h-4 group-hover:translate-x-1 transition-transform' />
-                </Link>
-              </Button>
-              <Button
-                size='lg'
-                variant='outline'
-                asChild
-                className='border-2 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300 text-base px-8'>
-                <Link href='#projects' className='flex items-center gap-2'>
-                  View Projects
-                </Link>
-              </Button>
-            </motion.div>
-
-            {/* Social proof */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className='mt-8 pt-6 border-t border-border/50'>
-              <p className='text-xs text-muted-foreground mb-3 uppercase tracking-widest'>
-                Trusted by organizations across Africa & beyond
-              </p>
-              <div className='flex flex-wrap gap-x-6 gap-y-1 text-sm font-medium text-muted-foreground justify-center lg:justify-start'>
-                <span>Platmus Ltd</span>
-                <span className='text-border'>·</span>
-                <span>GOUNI</span>
-                <span className='text-border'>·</span>
-                <span>NFVCB</span>
-                <span>African Fabrics Ltd</span>
-                <span className='text-border'>·</span>
-                <span>Threescore Tours</span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* RIGHT: Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className='flex-shrink-0 order-1 lg:order-2'>
-            <div className='relative w-72 h-72 md:w-96 md:h-96'>
-              {/* Outer glow */}
-              <div className='absolute -inset-6 bg-gradient-to-r from-primary/20 via-blue-500/20 to-purple-500/20 rounded-full blur-3xl' />
-
-              {/* Orbital rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className='absolute inset-0 rounded-full border border-primary/20'
-                style={{ margin: "-20px" }}
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className='absolute inset-0 rounded-full border border-blue-500/15'
-                style={{ margin: "-40px" }}
-              />
-
-              {/* Profile image */}
-              <div className='relative w-full h-full rounded-full overflow-hidden border-4 border-primary/40 shadow-2xl glow-primary'>
-                <Image
-                  src='/dev.webp'
-                  alt='Matthew Chukwu (CodeMat) - Full Stack Developer Abuja Nigeria'
-                  fill
-                  className='object-cover object-center'
-                  priority
-                />
-              </div>
-
-              {/* Floating badge: Next.js */}
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className='absolute -top-2 -left-4 px-3 py-1.5 rounded-xl bg-background/90 dark:bg-card/90 backdrop-blur-sm border border-border shadow-lg text-xs font-semibold flex items-center gap-1.5'>
-                <span className='w-2 h-2 rounded-full bg-blue-500' />
-                Next.js
-              </motion.div>
-
-              {/* Floating badge: AI */}
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className='absolute -bottom-2 -right-4 px-3 py-1.5 rounded-xl bg-background/90 dark:bg-card/90 backdrop-blur-sm border border-border shadow-lg text-xs font-semibold flex items-center gap-1.5'>
-                <Bot className='w-3.5 h-3.5 text-purple-500' />
-                AI Expert
-              </motion.div>
-
-              {/* Floating badge: Nigeria */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
-                className='absolute top-1/2 -right-8 px-3 py-1.5 rounded-xl bg-background/90 dark:bg-card/90 backdrop-blur-sm border border-border shadow-lg text-xs font-semibold'>
-                🇳🇬 Abuja
-              </motion.div>
+          <div
+            style={delay(0.35)}
+            className='enter-up mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start'>
+            <Button
+              size='lg'
+              asChild
+              className='group h-12 w-full rounded-full px-7 text-[15px] shadow-lg shadow-primary/20 sm:w-auto'>
+              <a href='#contact'>
+                <CalendarDays className='size-4' />
+                Book a call
+                <ArrowUpRight className='size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+              </a>
+            </Button>
+            <Button
+              size='lg'
+              variant='outline'
+              asChild
+              className='h-12 w-full rounded-full border-foreground/15 bg-background/40 px-7 text-[15px] backdrop-blur hover:bg-foreground/5 sm:w-auto dark:border-foreground/15 dark:bg-background/40'>
+              <a href='#about'>More about me</a>
+            </Button>
+            <div className='mt-1 flex items-center gap-1 sm:ml-1 sm:mt-0'>
+              {socials.map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={label}
+                  className='grid size-10 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground'>
+                  <Icon className='size-[18px]' />
+                </a>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.3 }}
-          className='mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 border border-border/50 rounded-2xl p-6 bg-card/30 backdrop-blur-sm'>
-          {[
-            { value: "13+", label: "Years Experience", color: "text-blue-500" },
-            {
-              value: "50+",
-              label: "Projects Delivered",
-              color: "text-green-500",
-            },
-            { value: "20+", label: "Technologies", color: "text-purple-500" },
-            { value: "3", label: "Continents Served", color: "text-amber-500" },
-          ].map((stat) => (
-            <div key={stat.label} className='text-center'>
-              <div
-                className={`text-3xl md:text-4xl font-black ${stat.color} mb-1`}>
-                {stat.value}
-              </div>
-              <div className='text-xs md:text-sm text-muted-foreground font-medium'>
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
-      {/* Fade bottom */}
-      <div className='absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none' />
+      {/* Scroll cue */}
+      <a
+        href='#about'
+        style={delay(1.5)}
+        className='enter-fade absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-foreground lg:flex'>
+        <ArrowDown className='size-3.5 animate-bounce' />
+        Scroll
+      </a>
     </section>
   );
 }

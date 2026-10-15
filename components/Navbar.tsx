@@ -1,18 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight, CalendarDays, Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
-const navItems = [
+export const navItems = [
   { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
+  { href: "#expertise", label: "Expertise" },
   { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Reviews" },
+  { href: "#testimonials", label: "Testimonials" },
 ];
 
 function Navbar() {
@@ -21,170 +19,110 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const close = () => setIsOpen(false);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg"
-            : "bg-transparent"
-        }`}>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex items-center justify-between h-16'>
-            {/* Logo */}
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <Link href='/' className='flex items-center gap-2'>
-                <div className='w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center shadow-md'>
-                  <span className='text-primary-foreground font-black text-sm'>C</span>
-                </div>
-                <span className='text-lg font-black bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent'>
-                  CodeMat
-                </span>
-              </Link>
-            </motion.div>
+      <header
+        className={cn(
+          "enter-header fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
+          scrolled || isOpen
+            ? "border-b border-border bg-background/75 backdrop-blur-xl"
+            : "border-b border-transparent",
+        )}>
+        <nav className='mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
+          <a href='#top' onClick={close} className='group flex items-center gap-2.5' aria-label='CodeMat home'>
+            <Image
+              src='/logo.jpg'
+              alt=''
+              width={56}
+              height={56}
+              className='size-14 rounded-full object-cover object-top ring-1 ring-border transition-transform group-hover:-rotate-6'
+            />
+            <span className='text-[15px] font-semibold tracking-tight'>
+              CodeMat<span className='text-primary'>.</span>
+            </span>
+          </a>
 
-            {/* Desktop nav */}
-            <div className='hidden md:flex items-center gap-1'>
-              {navItems.map((item, index) => (
-                <motion.div
+          <ul className='hidden items-center gap-1 md:flex'>
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className='rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground'>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className='flex items-center gap-1.5'>
+            <AnimatedThemeToggler className='size-9 rounded-full' />
+            <a
+              href='#contact'
+              className='hidden h-9 items-center gap-2 rounded-full border border-foreground/15 px-4 text-sm font-medium transition-colors hover:border-primary/50 hover:bg-primary/10 sm:inline-flex'>
+              <CalendarDays className='size-3.5 text-primary' />
+              Book a call
+            </a>
+            <button
+              onClick={() => setIsOpen((o) => !o)}
+              className='grid size-9 place-items-center rounded-full transition-colors hover:bg-foreground/5 md:hidden'
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}>
+              {isOpen ? <X className='size-5' /> : <Menu className='size-5' />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Spacer for fixed header */}
+      <div className='h-16' />
+
+      {isOpen && (
+        <div
+          id='mobile-menu'
+          className='enter-fade fixed inset-x-0 bottom-0 top-16 z-40 bg-background/95 backdrop-blur-xl [--duration:0.2s] md:hidden'>
+          <div className='flex h-full flex-col px-4 pb-8 pt-6 sm:px-6'>
+            <ul className='divide-y divide-border border-y border-border'>
+              {navItems.map((item, i) => (
+                <li
                   key={item.href}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.07 }}>
-                  <Link href={item.href}>
-                    <Button variant='ghost' size='sm' className='text-sm font-medium hover:text-primary transition-colors'>
-                      {item.label}
-                    </Button>
-                  </Link>
-                </motion.div>
+                  className='enter-up [--distance:12px] [--duration:0.3s]'
+                  style={{ "--delay": `${0.04 * i}s` } as React.CSSProperties}>
+                  <a
+                    href={item.href}
+                    onClick={close}
+                    className='flex items-center justify-between py-4 text-2xl font-semibold tracking-tight'>
+                    {item.label}
+                    <ArrowUpRight className='size-5 text-muted-foreground' />
+                  </a>
+                </li>
               ))}
-            </div>
-
-            {/* Right: theme toggle + hire me + mobile menu */}
-            <div className='flex items-center gap-2'>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.4 }}>
-                <AnimatedThemeToggler />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
-                className='hidden md:block'>
-                <Link href='#contact'>
-                  <Button
-                    size='sm'
-                    className='bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 shadow-md hover:shadow-primary/25 hover:shadow-lg transition-all duration-300 font-semibold'>
-                    Hire Me
-                  </Button>
-                </Link>
-              </motion.div>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={toggleMenu}
-                className='md:hidden p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors'
-                aria-label='Toggle menu'>
-                <AnimatePresence mode='wait'>
-                  {isOpen ? (
-                    <motion.div
-                      key='close'
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}>
-                      <X className='h-5 w-5' />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key='menu'
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}>
-                      <Menu className='h-5 w-5' />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+            </ul>
+            <div className='mt-auto'>
+              <a
+                href='#contact'
+                onClick={close}
+                className='flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary font-medium text-primary-foreground'>
+                <CalendarDays className='size-4' />
+                Book a call
+              </a>
             </div>
           </div>
         </div>
-      </motion.nav>
-
-      {/* Navbar spacer */}
-      <div className='h-16' />
-
-      {/* Mobile overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className='fixed inset-0 bg-background/60 backdrop-blur-sm z-40 md:hidden'
-            onClick={toggleMenu}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 220 }}
-            className='fixed top-16 right-0 w-72 h-[calc(100vh-4rem)] bg-background/98 backdrop-blur-2xl border-l border-border/50 z-50 md:hidden shadow-2xl'>
-            <div className='p-6 space-y-1'>
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.25, delay: index * 0.07 }}>
-                  <Link
-                    href={item.href}
-                    onClick={toggleMenu}
-                    className='flex items-center px-4 py-3 rounded-xl hover:bg-muted/60 transition-colors text-base font-medium'>
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.35 }}
-                className='pt-4 border-t border-border/40'>
-                <p className='text-xs text-muted-foreground text-center mb-3'>
-                  🟢 Available for hire in Abuja, Nigeria
-                </p>
-                <Link href='#contact' onClick={toggleMenu}>
-                  <Button className='w-full bg-gradient-to-r from-primary to-blue-500 hover:shadow-lg transition-all duration-300 font-semibold'>
-                    Hire Me Now
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      )}
     </>
   );
 }
