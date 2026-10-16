@@ -119,7 +119,7 @@ function Contact() {
       <Container className='relative'>
         <div className='grid gap-14 lg:grid-cols-12 lg:gap-16'>
           <Reveal className='lg:col-span-5'>
-            <Eyebrow index='05'>Contact</Eyebrow>
+            <Eyebrow index='06'>Contact</Eyebrow>
             <h2 className='mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-6xl'>
               Let&apos;s build something <span className='text-signature'>that lasts.</span>
             </h2>

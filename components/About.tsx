@@ -30,7 +30,7 @@ function About() {
           <div className='lg:col-span-5'>
             <div className='lg:sticky lg:top-28'>
               <Reveal>
-                <Eyebrow index='01'>About</Eyebrow>
+                <Eyebrow index='04'>About</Eyebrow>
                 <h2 className='mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl'>
                   The engineer teams call when it has to be{" "}
                   <span className='text-signature'>done right.</span>

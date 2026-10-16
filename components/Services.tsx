@@ -54,7 +54,7 @@ function Services() {
     <section id='services' className='relative border-y border-border bg-muted/40 py-24 sm:py-32 dark:bg-card/40'>
       <Container>
         <SectionHeading
-          index='03'
+          index='02'
           eyebrow='Ways to work together'
           title={
             <>

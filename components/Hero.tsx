@@ -71,10 +71,15 @@ function Hero() {
           <span className='text-xs font-medium leading-tight'>
             Google-certified
             <br />
-            <span className='text-muted-foreground dark:text-white/60'>Mobile Web Specialist</span>
+            <span className='text-muted-foreground dark:text-white/60'>
+              Mobile Web Specialist
+            </span>
           </span>
         </FloatingChip>
-        <FloatingChip className='bottom-[24%] right-[5%]' delay={1.25} drift={8}>
+        <FloatingChip
+          className='bottom-[24%] right-[5%]'
+          delay={1.25}
+          drift={8}>
           <span className='text-2xl font-semibold tracking-tight'>13+</span>
           <span className='font-mono text-[10px] uppercase leading-tight tracking-widest text-muted-foreground dark:text-white/60'>
             Years in
@@ -89,23 +94,25 @@ function Hero() {
           <p
             style={delay(0.1)}
             className='enter-up font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground sm:text-[13px]'>
-            Matthew Chukwu <span className='text-primary'>/</span> CodeMat
+            Matthew Chukwu <span className='text-primary'>/</span> Senior
+            software engineer
           </p>
 
           <h1
             style={delay(0.15)}
-            className='enter-up mt-4 text-balance text-[clamp(2.4rem,9vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.04em] lg:text-[min(5vw,8.4vh)]'>
-            <span className='sr-only'>Matthew Chukwu, </span>
-            Senior software engineer building products that <RotatingWord />
+            className='enter-up mt-4 text-balance text-[clamp(2.4rem,9vw,3.75rem)] font-extrabold leading-[1.02] tracking-[-0.045em] lg:text-[min(5vw,8.4vh)]'>
+            <span className='sr-only'>
+              Matthew Chukwu, senior software engineer:{" "}
+            </span>
+            I turn ideas into products that <RotatingWord />
           </h1>
 
           <p
             style={delay(0.25)}
             className='enter-up mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0'>
-            I partner with founders, agencies and engineering teams to design,
-            build and ship fast, reliable platforms — from fintech and
-            public-sector systems to AI-powered products. 13+ years of
-            production experience with Next.js, TypeScript and the modern cloud.
+            From first sketch to live product — scoping, design, build, payments
+            and launch. Software solutions for startups and growing businesses,
+            handled by one senior engineer.
           </p>
 
           <div
@@ -126,7 +133,7 @@ function Hero() {
               variant='outline'
               asChild
               className='h-12 w-full rounded-full border-foreground/15 bg-background/40 px-7 text-[15px] backdrop-blur hover:bg-foreground/5 sm:w-auto dark:border-foreground/15 dark:bg-background/40'>
-              <a href='#about'>More about me</a>
+              <a href='#work'>See the work</a>
             </Button>
             <div className='mt-1 flex items-center gap-1 sm:ml-1 sm:mt-0'>
               {socials.map(({ href, icon: Icon, label }) => (
@@ -147,7 +154,7 @@ function Hero() {
 
       {/* Scroll cue */}
       <a
-        href='#about'
+        href='#work'
         style={delay(1.5)}
         className='enter-fade absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-foreground lg:flex'>
         <ArrowDown className='size-3.5 animate-bounce' />

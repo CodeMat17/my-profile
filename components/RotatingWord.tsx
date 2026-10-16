@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-const outcomes = ["scale.", "perform.", "last.", "convert."];
+const outcomes = ["launch.", "scale.", "sell.", "last."];
 
 // Every word is stacked in the same grid cell, so the box is always as wide as the
 // longest word and the headline never re-wraps (no layout shift) as words rotate.

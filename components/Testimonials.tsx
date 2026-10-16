@@ -52,7 +52,7 @@ function Testimonials() {
     <section id='testimonials' className='relative py-24 sm:py-32'>
       <Container>
         <SectionHeading
-          index='04'
+          index='03'
           eyebrow='Testimonials'
           title={
             <>

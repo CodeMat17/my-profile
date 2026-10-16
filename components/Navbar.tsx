@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
 export const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
-  { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "/#work", label: "Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#about", label: "About" },
 ];
 
 function Navbar() {
@@ -43,13 +43,13 @@ function Navbar() {
             : "border-b border-transparent",
         )}>
         <nav className='mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
-          <a href='#top' onClick={close} className='group flex items-center gap-2.5' aria-label='CodeMat home'>
+          <a href='/#top' onClick={close} className='group flex items-center gap-2.5' aria-label='CodeMat home'>
             <Image
               src='/logo.jpg'
               alt=''
               width={56}
               height={56}
-              className='size-14 rounded-full object-cover object-top ring-1 ring-border transition-transform group-hover:-rotate-6'
+              className='size-12 rounded-full object-cover object-top ring-1 ring-border transition-transform group-hover:-rotate-6'
             />
             <span className='text-[15px] font-semibold tracking-tight'>
               CodeMat<span className='text-primary'>.</span>
@@ -71,7 +71,7 @@ function Navbar() {
           <div className='flex items-center gap-1.5'>
             <AnimatedThemeToggler className='size-9 rounded-full' />
             <a
-              href='#contact'
+              href='/#contact'
               className='hidden h-9 items-center gap-2 rounded-full border border-foreground/15 px-4 text-sm font-medium transition-colors hover:border-primary/50 hover:bg-primary/10 sm:inline-flex'>
               <CalendarDays className='size-3.5 text-primary' />
               Book a call
@@ -113,7 +113,7 @@ function Navbar() {
             </ul>
             <div className='mt-auto'>
               <a
-                href='#contact'
+                href='/#contact'
                 onClick={close}
                 className='flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary font-medium text-primary-foreground'>
                 <CalendarDays className='size-4' />

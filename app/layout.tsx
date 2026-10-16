@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
 });
 
@@ -89,7 +89,7 @@ export default function RootLayout({
         <meta name='ICBM' content='9.0579, 7.4951' />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        className={`${nunito.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'

@@ -2,11 +2,12 @@ import { ArrowUp, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
-  { href: "#services", label: "Services" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#work", label: "Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#about", label: "About" },
+  { href: "/#expertise", label: "Expertise" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const socialLinks = [
@@ -38,7 +39,7 @@ function Footer() {
       <div className='mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 lg:px-8'>
         <div className='flex flex-col justify-between gap-10 md:flex-row md:items-start'>
           <div className='max-w-sm'>
-            <a href='#top' className='flex items-center gap-2.5'>
+            <a href='/#top' className='flex items-center gap-2.5'>
               <Image
                 src='/logo.jpg'
                 alt=''
@@ -86,7 +87,7 @@ function Footer() {
               </a>
             ))}
             <a
-              href='#top'
+              href='#'
               aria-label='Back to top'
               className='ml-2 grid size-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground'>
               <ArrowUp className='size-4' />

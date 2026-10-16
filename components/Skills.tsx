@@ -50,7 +50,7 @@ function Skills() {
     <section id='expertise' className='relative overflow-hidden py-24 sm:py-32'>
       <Container>
         <SectionHeading
-          index='02'
+          index='05'
           eyebrow='Expertise'
           title={
             <>
